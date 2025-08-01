@@ -9,8 +9,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primaryBlue: "#0098DB",
+        lightGray: "#f6f6f6",
+        primaryOrange: "#f16237",
+        secondaryYellow: "#fdba2f",
+        grayCustom1: "#afafaf",
+        grayCustom2: "#9c9c9c",
+        grayNeutral: "#f0f0f0",
+      },
+
+      fontSize: {
+        fontDeskUltra: "2rem",
+        fontDeskLargest: "1.25rem",
+        fontDeskLarge: "1rem",
+        fontDesk: "0.875rem",
+        fontDeskSmall: "0.75rem",
+        fontDeskSmallest: "0.5rem",
+      },
+
+      spacing: {
+        sectionGap: "3rem",
+        gapUltra: "2rem",
+        gapLargest: "1.5rem",
+        gapLarge: "1.25rem",
+        gap: "1rem",
+        gapMed: "0.75rem",
+        gapSmall: "0.5rem",
+        gapSmallest: "0.25rem",
       },
     },
   },
