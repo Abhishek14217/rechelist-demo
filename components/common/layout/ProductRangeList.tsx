@@ -61,13 +61,13 @@ const ProductRangeList = () => {
               mainText="Type of Products"
               subText="Product Range"
             />
-            <div className="flex overflow-x-scroll no-scrollbar md:grid md:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr] gap-gap">
+            <div className="flex overflow-x-scroll no-scrollbar md:grid md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr] gap-gap">
               {rangeListData.map((item, index) => (
                 <div key={index} className="flex flex-col gap-gap">
                   <div className="relative group lg:overflow-hidden rounded-xl">
                     <Link
                       href={item.path}
-                      className="h-[12rem] lg:h-[18rem] w-[12rem] lg:w-full block"
+                      className="h-[12rem] md:h-[18rem] w-[12rem] lg:w-full block"
                     >
                       <Image
                         src={item.img}
@@ -86,7 +86,7 @@ const ProductRangeList = () => {
                       </div>
                     </Link>
                   </div>
-                  <Link href={item.path} className="lg:hidden">{item.title}</Link>
+                  <Link href={item.path} className="text-fontDesk md:text-fontDeskLargest lg:hidden">{item.title}</Link>
                 </div>
               ))}
             </div>
@@ -99,7 +99,7 @@ const ProductRangeList = () => {
         <Wrapper>
           <div className="flex flex-col gap-gapLargest lg:gap-gapUltra py-gapLargest">
             <SectionHeader mainText="Our Features" subText="Why Choose Us" />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* Left Side */}
               <div className="flex flex-col gap-gapLargest">
                 {chooseUsData.map((item, index) => (

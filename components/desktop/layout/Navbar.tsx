@@ -54,7 +54,7 @@ const Navbar = () => {
                   height={64}
                   width={96}
                   unoptimized
-                  className="w-[6rem] h-[4rem]"
+                  className="w-[6rem] h-[4rem] md:w-[7rem]"
                 />
               </Link>
             </div>

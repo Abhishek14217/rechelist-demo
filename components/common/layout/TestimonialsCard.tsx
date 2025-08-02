@@ -23,7 +23,7 @@ const TestimonialsCard: React.FC<TestimonialsCardProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-xl p-4 lg:p-6 flex flex-col md:flex-row gap-4 lg:gap-6 min-h-[23rem] lg:min-h-[15rem] transform transition-all duration-1000
+      className={`rounded-xl p-4 lg:p-6 flex flex-col md:flex-row gap-4 lg:gap-6 min-h-[23rem] md:min-h-[15rem] transform transition-all duration-1000
       ${
         isActive
           ? "bg-primaryBlue text-white scale-105 z-10 shadow-[0px_0px_6px_1px_rgba(0,0,0,0.2)] mx-gap lg:mx-[unset]"

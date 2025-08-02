@@ -22,15 +22,15 @@ const Certifications = () => {
       {/* --------------------------CERTIFICATIONS---------------------------- */}
       <div className="mt-gapUltra lg:mt-sectionGap">
         <Wrapper>
-          <div className="flex flex-col lg:grid lg:grid-cols-[1fr_1fr] gap-gapUltra lg:gap-[4rem]">
+          <div className="flex flex-col md:grid md:grid-cols-[1fr_1fr] gap-gapUltra md:gap-[4rem]">
             <div className="flex flex-col gap-gap">
               <SectionHeader
                 mainText="Certifications"
                 subText="Global Standards, Proven Quality"
                 isBlock
-                subTextClass="text-fontDeskLarge lg:text-fontDeskUltra"
+                subTextClass="text-fontDeskLarge md:text-[1.5rem] lg:text-fontDeskUltra"
               />
-              <p className="text-fontDesk lg:text-fontDeskLarge">
+              <p className="text-fontDesk md:text-fontDeskLarge">
                 Recognized by leading global healthcare authorities for our
                 quality and compliance
               </p>
@@ -54,7 +54,7 @@ const Certifications = () => {
       {/* --------------------------ABOUT COMPANY SECITON---------------------------- */}
       <div className="mt-gapUltra lg:mt-sectionGap bg-lightGray pt-[2rem] lg:pt-[3rem] pb-[2rem] lg:pb-[4.5rem]">
         <Wrapper>
-          <div className="flex flex-col lg:grid lg:grid-cols-[1fr_2fr] gap-gapLargest items-center lg:max-w-[70rem] mx-auto">
+          <div className="flex flex-col md:grid md:grid-cols-[1fr_2fr] gap-gapLargest items-center lg:max-w-[70rem] mx-auto">
             {/* LEFT SECTION */}
             <div className="relative flex justify-center items-center">
               {/* Main doctor/scientist image */}
@@ -70,7 +70,7 @@ const Certifications = () => {
                 className="absolute bottom-[1.5rem] left-[-3rem] lg:left-[-4.5rem] w-[10rem] lg:w-[12.5rem] h-[12rem] lg:h-[13.75rem] rounded-xl object-cover shadow-lg border-4 border-white"
               />
               {/* Badge */}
-              <div className="absolute bottom-12 left-[45%] lg:left-[35%] transform -translate-x-1/2 bg-gradient-to-r from-primaryOrange to-secondaryYellow text-white px-6 py-6 rounded-full shadow-lg flex flex-col items-center justify-center w-20 h-20">
+              <div className="absolute bottom-12 left-[45%] md:left-[35%] transform -translate-x-1/2 bg-gradient-to-r from-primaryOrange to-secondaryYellow text-white px-6 py-6 rounded-full shadow-lg flex flex-col items-center justify-center w-20 h-20">
                 <span className="text-2xl font-bold">4+</span>
                 <span className="text-fontDesk font-medium">UNITS</span>
               </div>
@@ -82,7 +82,7 @@ const Certifications = () => {
                 mainText="About Company"
                 subText="Empowering Healthcare with Innovation"
                 isBlock
-                subTextClass="text-[0.95rem] lg:text-fontDeskUltra"
+                subTextClass="text-[0.95rem] md:text-[1.5rem] lg:text-fontDeskUltra"
               />
               <div className="flex flex-col gap-gapSmall text-fontDesk">
                 <p className="leading-relaxed">
@@ -111,7 +111,7 @@ const Certifications = () => {
                 text="Know More About Us"
                 href="#"
                 type="link"
-                className="w-fit mx-auto lg:mx-[unset] text-white px-4 lg:px-6 py-2 rounded-full transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow hover:opacity-90 text-fontDesk lg:text-fontDeskLarge"
+                className="w-fit mx-auto md:mx-[unset] text-white px-4 lg:px-6 py-2 rounded-full transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow hover:opacity-90 text-fontDesk lg:text-fontDeskLarge"
               />
             </div>
           </div>

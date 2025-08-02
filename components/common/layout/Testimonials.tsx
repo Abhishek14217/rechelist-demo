@@ -56,8 +56,24 @@ const Testimonials = () => {
     afterChange: (current: number) => setActiveSlide(current),
 
     responsive: [
+       {
+        breakpoint: 1280,
+        settings: {
+          centerMode: true,
+          centerPadding: "200px",
+          slidesToShow: 1,
+        },
+      },
       {
         breakpoint: 1024,
+        settings: {
+          centerMode: true,
+          centerPadding: "150px",
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 768,
         settings: {
           centerMode: false,
           centerPadding: "0px",

@@ -67,7 +67,7 @@ const Footer = () => {
     <div className="mt-sectionGap bg-grayNeutral py-gapUltra">
       <Wrapper>
         <div className="flex flex-col gap-gapLargest">
-          <div className="flex flex-col gap-gapUltra border-b border-gray-300 pb-gapUltra lg:grid lg:grid-cols-[1fr_1fr] lg:gap-[5rem] items-center">
+          <div className="flex flex-col gap-gapUltra border-b border-gray-300 pb-gapUltra md:grid md:grid-cols-[1fr_1fr] md:gap-[5rem] items-center">
             <div className="flex flex-col gap-gap">
               <Link href="/" className="w-fit">
                 <Image

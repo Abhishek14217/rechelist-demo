@@ -51,12 +51,12 @@ const HomeProductsList = () => {
             subTextClass="text-white text-fontDeskLargest lg:text-fontDeskUltra"
           />
           {/* Products Grid */}
-          <div className="flex overflow-x-scroll no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 gap-gapUltra">
+          <div className="flex overflow-x-scroll no-scrollbar md:grid md:grid-cols-4 gap-gapUltra">
             {homeProductsData.map((product, index) => (
               <div key={index} className="flex flex-col gap-gap">
                 {/* Product Image */}
-                <div className="relative rounded-2xl overflow-hidden w-full h-[11.5rem] lg:h-[18.438rem]">
-                  <Image src={product.img} alt={product.name} fill className="object-contain lg:object-fill" />
+                <div className="relative rounded-2xl overflow-hidden w-full h-[11.5rem] md:h-[13rem] lg:h-[18.438rem]">
+                  <Image src={product.img} alt={product.name} fill className="object-contain md:object-fill" />
                 </div>
 
                 {/* Product Type Badge */}

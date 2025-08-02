@@ -60,7 +60,7 @@ const ProductCategoriesList = () => {
           <div className="rounded-2xl overflow-hidden max-w-[unset] lg:max-w-[75rem] mx-auto bg-[#ffede8] lg:bg-transparent lg:bg-[url('/franchise-bg.png')] lg:bg-cover lg:bg-no-repeat">
             {/* Gradient Heading with Icon */}
             <div className="relative w-fit mx-auto mt-gap px-[2.5rem] lg:px-[9rem] py-2 rounded-full transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow">
-              <span className="text-white text-fontDeskLarge lg:text-fontDeskLargest font-bold">
+              <span className="text-white text-fontDeskLarge md:text-fontDeskLargest font-bold">
                 PCD Franchise Opportunity
               </span>
               <Image
@@ -73,7 +73,7 @@ const ProductCategoriesList = () => {
               />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-gapLargest p-6 lg:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-gapLargest p-6 md:p-12">
               {/* ---------------- Left Content ---------------- */}
               <div className="flex flex-col gap-gap">
                 {/* Paragraph */}

@@ -33,7 +33,7 @@ const Speciality = () => {
   return (
     <div className="mt-gapUltra lg:mt-sectionGap">
       <Wrapper>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-gapUltra lg:gap-20 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-gapUltra lg:gap-20 items-center">
           <div className="flex flex-col gap-gapUltra">
             <SectionHeader
               mainText="Speciality"
@@ -49,11 +49,11 @@ const Speciality = () => {
                     alt={item.title}
                     width={32}
                     height={32}
-                    className="w-8 h-8 text-blue-500"
+                    className="w-6 h-6 md:w-8 md:h-8 text-blue-500"
                   />
-                  <div className="flex flex-col gap-gapSmall lg:gap-gapMed">
-                    <h3 className="font-bold text-xl">{item.title}</h3>
-                    <p className="text-gray-600">{item.content}</p>
+                  <div className="flex flex-col gap-gapSmall md:gap-gapMed">
+                    <h3 className="font-bold text-fontDeskLarge md:text-xl">{item.title}</h3>
+                    <p className="text-gray-600 text-fontDesk md:text-fontDeskLarge">{item.content}</p>
                   </div>
                 </div>
               ))}
@@ -66,7 +66,7 @@ const Speciality = () => {
               alt="World Map"
               width={700}
               height={400}
-              className="object-contain w-full max-w-lg lg:max-w-none"
+              className="object-contain w-full max-w-lg md:max-w-none"
             />
           </div>
         </div>
