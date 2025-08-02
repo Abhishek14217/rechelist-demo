@@ -54,12 +54,23 @@ const Testimonials = () => {
     arrows: false,
     beforeChange: (_current: number, next: number) => setActiveSlide(next),
     afterChange: (current: number) => setActiveSlide(current),
+
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          centerMode: false,
+          centerPadding: "0px",
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="mt-sectionGap">
+    <div className="mt-gapUltra lg:mt-sectionGap">
       <Wrapper>
-        <div className="flex flex-col gap-gapUltra">
+        <div className="flex flex-col gap-gapLargest lg:gap-gapUltra">
           <div className="flex flex-col items-center gap-gapSmall">
             <SectionHeader
               mainText="Testimonials"
@@ -71,7 +82,10 @@ const Testimonials = () => {
           </div>
 
           <div className="testimonials-slider">
-            <Slider ref={(sliderInstance) => setSlider(sliderInstance)} {...settings}>
+            <Slider
+              ref={(sliderInstance) => setSlider(sliderInstance)}
+              {...settings}
+            >
               {testimonialsDummy.map((item, index) => (
                 <TestimonialsCard
                   {...item}

@@ -54,36 +54,39 @@ const ProductRangeList = () => {
   return (
     <>
       {/* --------------------------PRODUCTS RANGE---------------------------- */}
-      <div className="mt-sectionGap">
+      <div className="mt-gapUltra lg:mt-sectionGap">
         <Wrapper>
-          <div className="flex flex-col gap-gapUltra">
+          <div className="flex flex-col gap-gapLargest lg:gap-gapUltra">
             <SectionHeader
               mainText="Type of Products"
               subText="Product Range"
             />
-            <div className="grid grid-cols-[1fr_1fr_1fr_1fr] gap-gap">
+            <div className="flex overflow-x-scroll no-scrollbar md:grid md:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr] gap-gap">
               {rangeListData.map((item, index) => (
-                <div
-                  key={index}
-                  className="relative w-full h-[18rem] group overflow-hidden rounded-xl"
-                >
-                  <Link href={item.path}>
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      className="rounded-xl object-cover transition-transform duration-500 group-hover:scale-105"
-                      fill
-                    />
-                    {/* Overlay */}
-                    <div
-                      className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 
-                     flex items-center justify-center transition-opacity duration-500 rounded-xl"
+                <div key={index} className="flex flex-col gap-gap">
+                  <div className="relative group lg:overflow-hidden rounded-xl">
+                    <Link
+                      href={item.path}
+                      className="h-[12rem] lg:h-[18rem] w-[12rem] lg:w-full block"
                     >
-                      <span className="text-white text-lg font-semibold">
-                        {item.title}
-                      </span>
-                    </div>
-                  </Link>
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        className="rounded-xl object-cover transition-transform duration-500 group-hover:scale-105"
+                        fill
+                      />
+                      {/* Overlay */}
+                      <div
+                        className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 
+                     flex items-center justify-center transition-opacity duration-500 rounded-xl"
+                      >
+                        <span className="text-white text-lg font-semibold">
+                          {item.title}
+                        </span>
+                      </div>
+                    </Link>
+                  </div>
+                  <Link href={item.path} className="lg:hidden">{item.title}</Link>
                 </div>
               ))}
             </div>
@@ -92,9 +95,9 @@ const ProductRangeList = () => {
       </div>
 
       {/* --------------------------WHY CHOOSE US---------------------------- */}
-      <div className="mt-sectionGap bg-[url('/choose-bg.png')] bg-cover bg-center">
+      <div className="mt-gapUltra lg:mt-sectionGap bg-[url('/choose-bg.png')] bg-cover bg-center">
         <Wrapper>
-          <div className="flex flex-col gap-gapUltra py-gapLargest">
+          <div className="flex flex-col gap-gapLargest lg:gap-gapUltra py-gapLargest">
             <SectionHeader mainText="Our Features" subText="Why Choose Us" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Left Side */}

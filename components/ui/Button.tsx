@@ -9,7 +9,7 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({
-  className = "px-6 py-2 rounded-full text-black transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow hover:opacity-90",
+  className = "px-4 lg:px-6 py-2 text-fontDesk lg:text-fontDeskLarge rounded-full text-black transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow hover:opacity-90",
   type = "button",
   text,
   href = "#",

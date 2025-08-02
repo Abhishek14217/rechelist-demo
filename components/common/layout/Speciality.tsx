@@ -31,7 +31,7 @@ const specialityData = [
 
 const Speciality = () => {
   return (
-    <div className="mt-sectionGap">
+    <div className="mt-gapUltra lg:mt-sectionGap">
       <Wrapper>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-gapUltra lg:gap-20 items-center">
           <div className="flex flex-col gap-gapUltra">
@@ -39,6 +39,7 @@ const Speciality = () => {
               mainText="Speciality"
               subText="What Makes Us Better Than Others"
               isBlock
+              subTextClass="text-fontDeskLarge lg:text-fontDeskUltra"
             />
             <div className="flex flex-col gap-gapUltra">
               {specialityData.map((item, index) => (
@@ -50,7 +51,7 @@ const Speciality = () => {
                     height={32}
                     className="w-8 h-8 text-blue-500"
                   />
-                  <div className="flex flex-col gap-gapMed">
+                  <div className="flex flex-col gap-gapSmall lg:gap-gapMed">
                     <h3 className="font-bold text-xl">{item.title}</h3>
                     <p className="text-gray-600">{item.content}</p>
                   </div>

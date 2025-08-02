@@ -11,7 +11,7 @@ import Testimonials from "@/components/common/layout/Testimonials";
 const HomeIndex = () => {
   return (
     <>
-      <div className="mt-[-6.25rem] relative">
+      <div className="mt-0 lg:mt-[-6.25rem] relative">
         <MainBanner />
         <BannerContent />
       </div>

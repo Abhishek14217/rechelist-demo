@@ -47,7 +47,7 @@ const BlogsHome = () => {
   return (
     <div className="mt-sectionGap">
       <Wrapper>
-        <div className="flex flex-col gap-gapUltra">
+        <div className="flex flex-col gap-gapLargest lg:gap-gapUltra">
           <SectionHeader
             mainText="Recent Blogs"
             subText="Explore Insights & Updates"

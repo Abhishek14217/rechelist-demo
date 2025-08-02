@@ -28,8 +28,8 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       <div className="relative inline-block">
         <span
           className={`${
-            subTextClass ? subTextClass : ""
-          } text-black text-fontDeskUltra font-bold leading-tight`}
+            subTextClass ? subTextClass : "text-black text-fontDeskLargest lg:text-fontDeskUltra"
+          } font-bold leading-tight`}
         >
           {subText}
         </span>
@@ -39,7 +39,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           height={36}
           width={36}
           unoptimized
-          className="w-[2.25rem] h-[2.25rem] absolute top-1/2 -translate-y-1/2 right-[-2.8rem]"
+          className="w-[2rem] h-[2rem] lg:w-[2.25rem] lg:h-[2.25rem] absolute top-1/2 -translate-y-1/2 right-[-2.5rem] lg:right-[-2.8rem]"
         />
       </div>
     </div>

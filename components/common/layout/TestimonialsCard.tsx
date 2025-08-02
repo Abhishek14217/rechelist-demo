@@ -1,5 +1,4 @@
 import Image, { StaticImageData } from "next/image";
-import { RefObject } from "react";
 import Slider from "react-slick";
 
 import leftArrow from "@/icons/arrow-left.svg";
@@ -24,10 +23,10 @@ const TestimonialsCard: React.FC<TestimonialsCardProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-xl p-6 flex flex-col md:flex-row gap-6 min-h-[15rem] transform transition-all duration-1000
+      className={`rounded-xl p-4 lg:p-6 flex flex-col md:flex-row gap-4 lg:gap-6 min-h-[23rem] lg:min-h-[15rem] transform transition-all duration-1000
       ${
         isActive
-          ? "bg-primaryBlue text-white scale-105 z-10 shadow-[0px_0px_6px_1px_rgba(0,0,0,0.2)]"
+          ? "bg-primaryBlue text-white scale-105 z-10 shadow-[0px_0px_6px_1px_rgba(0,0,0,0.2)] mx-gap lg:mx-[unset]"
           : "bg-transparent text-black opacity-70 scale-95"
       }
     `}
@@ -46,7 +45,7 @@ const TestimonialsCard: React.FC<TestimonialsCardProps> = ({
 
       {/* Right Side Content */}
       <div className="flex flex-col justify-between flex-1 gap-gap">
-        <p className="text-base md:text-fontDesk leading-relaxed font-light">
+        <p className="text-fontDesk leading-relaxed font-light">
           {content}
         </p>
 

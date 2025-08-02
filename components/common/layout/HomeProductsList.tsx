@@ -42,25 +42,21 @@ const homeProductsData = [
 
 const HomeProductsList = () => {
   return (
-    <div className="mt-sectionGap bg-black py-gapUltra">
+    <div className="mt-gapUltra lg:mt-sectionGap bg-black py-gapUltra">
       <Wrapper>
         <div className="flex flex-col gap-gapUltra">
           <SectionHeader
             mainText="Portfolio"
             subText="Our Products"
-            subTextClass="text-white"
+            subTextClass="text-white text-fontDeskLargest lg:text-fontDeskUltra"
           />
           {/* Products Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gapUltra">
+          <div className="flex overflow-x-scroll no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 gap-gapUltra">
             {homeProductsData.map((product, index) => (
               <div key={index} className="flex flex-col gap-gap">
                 {/* Product Image */}
-                <div className="relative bg-gray-200 rounded-2xl overflow-hidden w-full h-[18.438rem]">
-                  <Image
-                    src={product.img}
-                    alt={product.name}
-                    fill
-                  />
+                <div className="relative rounded-2xl overflow-hidden w-full h-[11.5rem] lg:h-[18.438rem]">
+                  <Image src={product.img} alt={product.name} fill className="object-contain lg:object-fill" />
                 </div>
 
                 {/* Product Type Badge */}
@@ -70,7 +66,7 @@ const HomeProductsList = () => {
 
                 {/* Product Details */}
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xl font-semibold">
+                  <h3 className="text-white text-fontDeskLarge lg:text-xl font-semibold">
                     {product.name}
                   </h3>
                   <p className="bg-clip-text text-transparent bg-gradient-to-r from-primaryOrange to-secondaryYellow text-sm font-medium">
@@ -83,7 +79,7 @@ const HomeProductsList = () => {
                 <Button
                   type="button"
                   text="Send Enquiry"
-                  className="w-fit text-white px-6 py-2 rounded-full transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow hover:opacity-90"
+                  className="w-fit text-white px-4 lg:px-6 py-2 text-fontDesk lg:text-fontDeskLarge rounded-full transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow hover:opacity-90"
                 />
               </div>
             ))}

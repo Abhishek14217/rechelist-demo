@@ -67,7 +67,7 @@ const Footer = () => {
     <div className="mt-sectionGap bg-grayNeutral py-gapUltra">
       <Wrapper>
         <div className="flex flex-col gap-gapLargest">
-          <div className="border-b pb-gapUltra grid grid-cols-[1fr_1fr] gap-[5rem] items-center">
+          <div className="flex flex-col gap-gapUltra border-b border-gray-300 pb-gapUltra lg:grid lg:grid-cols-[1fr_1fr] lg:gap-[5rem] items-center">
             <div className="flex flex-col gap-gap">
               <Link href="/" className="w-fit">
                 <Image
@@ -85,7 +85,7 @@ const Footer = () => {
                 that blends science with market-ready innovation.
               </p>
             </div>
-            <div className="flex flex-col gap-gap w-3/4">
+            <div className="flex flex-col gap-gapSmall lg:gap-gap w-full lg:w-3/4">
               <h6 className="text-fontDeskLargest font-semibold">Newsletter</h6>
               <div className="relative">
                 <CustomInput
@@ -108,9 +108,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="border-b pb-gapUltra flex justify-between">
-            <div className="flex flex-col justify-between">
-              <div className="flex flex-col gap-gap">
+          <div className="flex flex-col gap-gapUltra border-b border-gray-300 pb-gapUltra">
+            <div className=" flex flex-col md:flex-row gap-gapUltra md:gap-0 justify-between">
+              <div className="flex flex-col gap-gapMed lg:gap-gap">
                 <h6 className="text-fontDeskLargest font-semibold">
                   Contact Us
                 </h6>
@@ -130,7 +130,63 @@ const Footer = () => {
                   ))}
                 </div>
               </div>
-              <div className="flex gap-gapUltra items-center">
+
+              {footerDummyData.map((link, linkIndex) => (
+                <div className="flex flex-col gap-gap" key={linkIndex}>
+                  <h6 className="text-fontDeskLargest font-semibold">
+                    {link.title}
+                  </h6>
+                  <div className="flex flex-col gap-gap">
+                    {link.content.map((item, index) => (
+                      <Link
+                        href={item.slug}
+                        key={index}
+                        className="text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-gapUltra items-center">
+              {socialIcons.map((social, socialIndex) => (
+                <Link
+                  href={social.slug}
+                  key={socialIndex}
+                  className="transition-transform duration-300 hover:scale-125"
+                >
+                  <Image
+                    src={social.img}
+                    alt={`social-icon-${socialIndex}`}
+                    width={20}
+                    height={20}
+                    unoptimized
+                    className="size-[1.25rem]"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center text-fontDesk text-gray-600">
+            Copyright © {new Date().getFullYear()} All Rights Reserved |{" "}
+            <span className="font-semibold text-gray-800">
+              Rechelist Pharma
+            </span>
+          </div>
+        </div>
+      </Wrapper>
+    </div>
+  );
+};
+
+export default Footer;
+
+//EXTRA
+{
+  /* <div className="flex gap-gapUltra items-center">
                 {socialIcons.map((social, socialIndex) => (
                   <Link
                     href={social.slug}
@@ -147,39 +203,5 @@ const Footer = () => {
                     />
                   </Link>
                 ))}
-              </div>
-            </div>
-
-            {footerDummyData.map((link, linkIndex) => (
-              <div className="flex flex-col gap-gap" key={linkIndex}>
-                <h6 className="text-fontDeskLargest font-semibold">
-                  {link.title}
-                </h6>
-                <div className="flex flex-col gap-gap">
-                  {link.content.map((item, index) => (
-                    <Link
-                      href={item.slug}
-                      key={index}
-                      className="text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center text-fontDesk text-gray-600">
-            Copyright © {new Date().getFullYear()} All Rights Reserved |{" "}
-            <span className="font-semibold text-gray-800">
-              Rechelist Pharma
-            </span>
-          </div>
-        </div>
-      </Wrapper>
-    </div>
-  );
-};
-
-export default Footer;
+              </div> */
+}

@@ -11,7 +11,6 @@ import cardiac from "@/images/cardiac.svg";
 import derma from "@/images/derma.svg";
 import paediatric from "@/images/pediatric.svg";
 import ayurvedic from "@/images/ayurvedic.svg";
-import franchiseBg from "@/images/franchise-bg.png";
 import headerCommon from "@/images/section-header.svg";
 import pcdOpportunityNew from "@/images/pcd-opportunity-new.png";
 import arrowIcon from "@/icons/arrow-right-up.svg";
@@ -31,26 +30,23 @@ const ProductCategoriesList = () => {
   return (
     <>
       {/* --------------------------PRODUCTS CATEGORIES---------------------------- */}
-      <div className="mt-sectionGap">
+      <div className="mt-gapUltra lg:mt-sectionGap">
         <Wrapper>
-          <div className="flex flex-col gap-gapUltra">
+          <div className="flex flex-col gap-gapLargest lg:gap-gapUltra">
             <SectionHeader mainText="Categories" subText="Product Categories" />
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-gapLarge lg:gap-0 overflow-x-scroll no-scrollbar">
               {catList.map((item, index) => (
                 <Link
                   href={`/${item.path}`}
                   className="flex flex-col items-center gap-gap"
                   key={index}
                 >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    height={70}
-                    width={70}
-                    className="h-[4.375rem] w-[4.375rem]"
-                    unoptimized
-                  />
-                  <span>{item.title}</span>
+                  <div className="relative h-[3.5rem] w-[3.5rem] md:h-[4.375rem] md:w-[4.375rem]">
+                    <Image src={item.image} alt={item.title} fill unoptimized />
+                  </div>
+                  <span className="text-fontDeskSmall md:text-fontDeskLarge whitespace-nowrap md:whitespace-normal">
+                    {item.title}
+                  </span>
                 </Link>
               ))}
             </div>
@@ -59,15 +55,12 @@ const ProductCategoriesList = () => {
       </div>
 
       {/* --------------------------PCD PHARMA OPPORTUNITY---------------------------- */}
-      <div className="mt-sectionGap">
+      <div className="mt-gapUltra lg:mt-sectionGap">
         <Wrapper>
-          <div
-            className="rounded-2xl bg-cover bg-no-repeat overflow-hidden max-w-[75rem] mx-auto"
-            style={{ backgroundImage: `url(${franchiseBg.src})` }}
-          >
+          <div className="rounded-2xl overflow-hidden max-w-[unset] lg:max-w-[75rem] mx-auto bg-[#ffede8] lg:bg-transparent lg:bg-[url('/franchise-bg.png')] lg:bg-cover lg:bg-no-repeat">
             {/* Gradient Heading with Icon */}
-            <div className="relative w-fit mx-auto mt-gap px-[9rem] py-2 rounded-full transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow">
-              <span className="text-white text-fontDeskLargest font-bold">
+            <div className="relative w-fit mx-auto mt-gap px-[2.5rem] lg:px-[9rem] py-2 rounded-full transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow">
+              <span className="text-white text-fontDeskLarge lg:text-fontDeskLargest font-bold">
                 PCD Franchise Opportunity
               </span>
               <Image
@@ -76,11 +69,11 @@ const ProductCategoriesList = () => {
                 height={32}
                 width={32}
                 unoptimized
-                className="w-[2rem] h-[2rem] absolute top-1/2 -translate-y-1/2 right-[18%]"
+                className="size-[1.5rem] lg:w-[2rem] lg:h-[2rem] absolute top-1/2 -translate-y-1/2 right-[2%] lg:right-[18%]"
               />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-gapLargest p-8 lg:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-gapLargest p-6 lg:p-12">
               {/* ---------------- Left Content ---------------- */}
               <div className="flex flex-col gap-gap">
                 {/* Paragraph */}
@@ -116,7 +109,7 @@ const ProductCategoriesList = () => {
               </div>
 
               {/* ---------------- Right Image ---------------- */}
-              <div className="relative">
+              <div className="relative h-[20rem] lg:h-[unset]">
                 <Image
                   src={pcdOpportunityNew}
                   alt="franchise"
@@ -128,7 +121,7 @@ const ProductCategoriesList = () => {
                 <Link
                   href="#"
                   className="absolute -bottom-1 right-0 bg-gradient-to-r from-primaryOrange to-secondaryYellow 
-               w-[3rem] h-[3rem] flex items-center justify-center 
+               size-[2.5rem] lg:w-[3rem] lg:h-[3rem] flex items-center justify-center 
                rounded-full shadow-lg hover:scale-105 transition"
                 >
                   <Image
