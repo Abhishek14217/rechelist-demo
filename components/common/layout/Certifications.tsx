@@ -3,20 +3,16 @@ import Image from "next/image";
 import Wrapper from "@/components/ui/Wrapper";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
+import { CertificationsType } from "@/types/static-items";
 
-import iso from "@/images/iso.png";
-import gmp from "@/images/gmp.png";
-import who from "@/images/who.png";
 import aboutOne from "@/images/about-company-one.png";
 import aboutTwo from "@/images/about-company-two.png";
 
-const certificateData = [
-  { title: "ISO", img: iso },
-  { title: "GMP", img: gmp },
-  { title: "WHO", img: who },
-];
+type CertificationsProps = {
+  certificates: CertificationsType;
+};
 
-const Certifications = () => {
+const Certifications: React.FC<CertificationsProps> = ({ certificates }) => {
   return (
     <>
       {/* --------------------------CERTIFICATIONS---------------------------- */}
@@ -26,20 +22,19 @@ const Certifications = () => {
             <div className="flex flex-col gap-gap">
               <SectionHeader
                 mainText="Certifications"
-                subText="Global Standards, Proven Quality"
+                subText={certificates.title}
                 isBlock
                 subTextClass="text-fontDeskLarge md:text-[1.5rem] lg:text-fontDeskUltra"
               />
               <p className="text-fontDesk md:text-fontDeskLarge">
-                Recognized by leading global healthcare authorities for our
-                quality and compliance
+                {certificates.description}
               </p>
             </div>
             <div className="flex lg:justify-between items-center overflow-x-scroll no-scrollbar gap-gapLargest lg:gap-0">
-              {certificateData.map((item, index) => (
+              {certificates.certifications.map((item, index) => (
                 <Image
-                  src={item.img}
-                  alt={item.title}
+                  src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${item.image}`}
+                  alt={`certificate-${index}`}
                   width={140}
                   height={140}
                   className="size-[6rem] lg:size-[8.75rem]"
@@ -122,3 +117,13 @@ const Certifications = () => {
 };
 
 export default Certifications;
+
+//------------------EXTRA CODE-----------------------
+// import iso from "@/images/iso.png";
+// import gmp from "@/images/gmp.png";
+// import who from "@/images/who.png";
+// const certificateData = [
+//   { title: "ISO", img: iso },
+//   { title: "GMP", img: gmp },
+//   { title: "WHO", img: who },
+// ];

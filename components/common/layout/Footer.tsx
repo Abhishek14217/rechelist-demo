@@ -1,68 +1,59 @@
 import Image from "next/image";
 import Link from "next/link";
+import { JSX } from "react";
 
 import Wrapper from "@/components/ui/Wrapper";
 import CustomInput from "@/components/ui/Input";
+import { Contact, MenuGroup } from "@/types/nav-items";
 
-import mainLogo from "@/images/logo.svg";
 import mailBtn from "@/icons/newsletter-btn.svg";
 import locationIcon from "@/icons/location-icon.svg";
 import mailIcon from "@/icons/mail-icon.svg";
 import phoneIcon from "@/icons/phone-icon.svg";
-import fbIcon from "@/icons/fb-icon.svg";
-import linkedinIcon from "@/icons/linkedin-icon.svg";
-import xIcon from "@/icons/x-icon.svg";
+import {
+  IconBrandFacebook,
+  IconBrandTwitter,
+  IconBrandInstagram,
+} from "@tabler/icons-react";
 
-const footerDummyData = [
-  {
-    title: "Quick Links",
-    content: [
-      { title: "About Us", slug: "about-us" },
-      { title: "Products", slug: "products" },
-      { title: "Services", slug: "services" },
-      { title: "Blog", slug: "blog" },
-      { title: "Contact Us", slug: "contact-us" },
-    ],
-  },
-  {
-    title: "Resource",
-    content: [
-      { title: "Privacy Policy", slug: "privacy-policy" },
-      { title: "Terms and Conditions", slug: "terms-and-conditions" },
-      { title: "FAQ", slug: "faq" },
-      { title: "How We Work", slug: "how-we-work" },
-    ],
-  },
-];
+type FooterProps = {
+  socialLinks: MenuGroup;
+  quickLinks: MenuGroup;
+  resourceLinks: MenuGroup;
+  contactInfo: Contact;
+  logo: string;
+  description: string;
+};
 
-const contactUsData = [
-  {
-    img: locationIcon,
-    content: (
-      <>
-        Office 18, Paras Down Square Mall,
-        <br />
-        Zirakpur, Punjab, 140603
-      </>
-    ),
-  },
-  {
-    img: mailIcon,
-    content: "rechelist@gmail.com",
-  },
-  {
-    img: phoneIcon,
-    content: "+91-8288037775",
-  },
-];
+const Footer: React.FC<FooterProps> = ({
+  socialLinks,
+  quickLinks,
+  resourceLinks,
+  contactInfo,
+  logo,
+  description,
+}) => {
+  const contactUsData = [
+    {
+      img: locationIcon,
+      content: contactInfo.address,
+    },
+    {
+      img: mailIcon,
+      content: contactInfo.email,
+    },
+    {
+      img: phoneIcon,
+      content: contactInfo.phone,
+    },
+  ];
 
-const socialIcons = [
-  { img: fbIcon, slug: "#" },
-  { img: linkedinIcon, slug: "#" },
-  { img: xIcon, slug: "#" },
-];
+  const iconMap: Record<string, JSX.Element> = {
+    "ti ti-brand-facebook": <IconBrandFacebook size={24} stroke={1.5} />,
+    "ti ti-brand-x": <IconBrandTwitter size={24} stroke={1.5} />,
+    "ti ti-brand-instagram": <IconBrandInstagram size={24} stroke={1.5} />,
+  };
 
-const Footer = () => {
   return (
     <div className="mt-sectionGap bg-grayNeutral py-gapUltra">
       <Wrapper>
@@ -71,19 +62,15 @@ const Footer = () => {
             <div className="flex flex-col gap-gap">
               <Link href="/" className="w-fit">
                 <Image
-                  src={mainLogo}
-                  alt="logo-header-desk"
-                  height={70}
-                  width={140}
+                  src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${logo}`}
+                  alt="logo-footer"
+                  height={72}
+                  width={160}
                   unoptimized
-                  className="w-[8.75rem] h-[4.375rem]"
+                  className="w-[6.5rem] h-[3rem] md:w-[10rem] md:h-[4.5rem]"
                 />
               </Link>
-              <p className="text-fontDesk">
-                Rechelist Pharma, the nutraceutical manufacturing division of
-                Biotech, offers a full-spectrum contract manufacturing service
-                that blends science with market-ready innovation.
-              </p>
+              <p className="text-fontDesk">{description}</p>
             </div>
             <div className="flex flex-col gap-gapSmall lg:gap-gap w-full lg:w-3/4">
               <h6 className="text-fontDeskLargest font-semibold">Newsletter</h6>
@@ -125,48 +112,70 @@ const Footer = () => {
                         unoptimized
                         className="size-[1.25rem]"
                       />
-                      <span className="text-fontDesk">{item.content}</span>
+                      <span
+                        className="text-fontDesk"
+                        dangerouslySetInnerHTML={{
+                          __html: item.content,
+                        }}
+                      />
                     </div>
                   ))}
                 </div>
               </div>
 
-              {footerDummyData.map((link, linkIndex) => (
-                <div className="flex flex-col gap-gap" key={linkIndex}>
-                  <h6 className="text-fontDeskLargest font-semibold">
-                    {link.title}
-                  </h6>
-                  <div className="flex flex-col gap-gap">
-                    {link.content.map((item, index) => (
-                      <Link
-                        href={item.slug}
-                        key={index}
-                        className="text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
-                  </div>
+              <div className="flex flex-col gap-gap">
+                <h6 className="text-fontDeskLargest font-semibold">
+                  {quickLinks.name}
+                </h6>
+                <div className="flex flex-col gap-gap">
+                  {quickLinks.items.map((link, linkIndex) => (
+                    <Link
+                      target={link.target}
+                      href={link.url}
+                      key={linkIndex}
+                      className="text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              <div className="flex flex-col gap-gap">
+                <h6 className="text-fontDeskLargest font-semibold">
+                  {resourceLinks.name}
+                </h6>
+                <div className="flex flex-col gap-gap">
+                  {resourceLinks.items.map((link, linkIndex) => (
+                    <Link
+                      target={link.target}
+                      href={link.url}
+                      key={linkIndex}
+                      className="text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
+
             <div className="flex gap-gapUltra items-center">
-              {socialIcons.map((social, socialIndex) => (
-                <Link
-                  href={social.slug}
-                  key={socialIndex}
-                  className="transition-transform duration-300 hover:scale-125"
-                >
-                  <Image
-                    src={social.img}
-                    alt={`social-icon-${socialIndex}`}
-                    width={20}
-                    height={20}
-                    unoptimized
-                    className="size-[1.25rem]"
-                  />
-                </Link>
-              ))}
+              {socialLinks.items.map((item, index) => {
+                const iconKey = item.icon ?? "";
+                const IconElement = iconMap[iconKey];
+
+                return (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    target={item.target}
+                    className="transition-transform duration-300 hover:scale-125 text-gray-700 hover:text-primaryOrange"
+                  >
+                    {IconElement || null}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
@@ -184,24 +193,56 @@ const Footer = () => {
 
 export default Footer;
 
-//EXTRA
+//--------------------EXTRA CODE--------------------------
+// import fbIcon from "@/icons/fb-icon.svg";
+// import linkedinIcon from "@/icons/linkedin-icon.svg";
+// import xIcon from "@/icons/x-icon.svg";
+// import mainLogo from "@/images/logo.svg";
+// const socialIcons = [
+//   { img: fbIcon, slug: "#" },
+//   { img: linkedinIcon, slug: "#" },
+//   { img: xIcon, slug: "#" },
+// ];
 {
   /* <div className="flex gap-gapUltra items-center">
-                {socialIcons.map((social, socialIndex) => (
-                  <Link
-                    href={social.slug}
-                    key={socialIndex}
-                    className="transition-transform duration-300 hover:scale-125"
-                  >
-                    <Image
-                      src={social.img}
-                      alt={`social-icon-${socialIndex}`}
-                      width={20}
-                      height={20}
-                      unoptimized
-                      className="size-[1.25rem]"
-                    />
-                  </Link>
-                ))}
-              </div> */
+              {socialIcons.map((social, socialIndex) => (
+                <Link
+                  href={social.slug}
+                  key={socialIndex}
+                  className="transition-transform duration-300 hover:scale-125"
+                >
+                  <Image
+                    src={social.img}
+                    alt={`social-icon-${socialIndex}`}
+                    width={20}
+                    height={20}
+                    unoptimized
+                    className="size-[1.25rem]"
+                  />
+                </Link>
+              ))}
+            </div> */
+}
+{
+  //   const footerDummyData = [
+  //   {
+  //     title: "Quick Links",
+  //     content: [
+  //       { title: "About Us", slug: "about-us" },
+  //       { title: "Products", slug: "products" },
+  //       { title: "Services", slug: "services" },
+  //       { title: "Blog", slug: "blog" },
+  //       { title: "Contact Us", slug: "contact-us" },
+  //     ],
+  //   },
+  //   {
+  //     title: "Resource",
+  //     content: [
+  //       { title: "Privacy Policy", slug: "privacy-policy" },
+  //       { title: "Terms and Conditions", slug: "terms-and-conditions" },
+  //       { title: "FAQ", slug: "faq" },
+  //       { title: "How We Work", slug: "how-we-work" },
+  //     ],
+  //   },
+  // ];
 }

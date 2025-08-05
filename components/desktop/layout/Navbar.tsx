@@ -8,21 +8,18 @@ import Wrapper from "@/components/ui/Wrapper";
 import Button from "@/components/ui/Button";
 import OffCanvas from "@/components/ui/OffCanvas";
 import NavMob from "@/components/mobile/layout/NavMob";
+import DropdownContent from "@/components/ui/DropdownContent";
+import { MenuGroup } from "@/types/nav-items";
 
-import mainLogo from "@/images/logo.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
-const navData = [
-  { title: "About Us", path: "about-us" },
-  { title: "Career", path: "career" },
-  { title: "Services", path: "services" },
-  { title: "Products", path: "products" },
-  { title: "Categories", path: "categories" },
-  { title: "Product Range", path: "product-range" },
-  { title: "Post Your Requirement", path: "post-requirement" },
-];
+type NavBarProps = {
+  navData: MenuGroup;
+  logo: string;
+};
 
-const Navbar = () => {
+const Navbar: React.FC<NavBarProps> = ({ navData, logo }) => {
   const [sideBarOffCanvasOpen, setSideBarOffCanvasOpen] = useState(false);
 
   //--------------------TOGGLE SIDEBAR OFF-CANVAS----------------------
@@ -39,7 +36,17 @@ const Navbar = () => {
           offcanvas={sideBarOffCanvasOpen}
           className="left-0 -translate-x-full max-w-[75%] w-[26.875rem] overflow-scroll"
         >
-          <NavMob close={toggleSideBarOffCanvas} navData={navData} />
+          <NavMob
+            close={toggleSideBarOffCanvas}
+            navData={{
+              ...navData,
+              items: navData.items.filter(
+                (item) =>
+                  item.title.toLowerCase() !== "contact" &&
+                  item.title.toLowerCase() !== "contact us"
+              ),
+            }}
+          />
         </OffCanvas>
         <Wrapper>
           <div className="flex justify-between items-center">
@@ -49,21 +56,34 @@ const Navbar = () => {
               </button>
               <Link href="/">
                 <Image
-                  src={mainLogo}
+                  src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${logo}`}
                   alt="logo-header-mob"
-                  height={64}
-                  width={96}
+                  height={48}
+                  width={104}
                   unoptimized
-                  className="w-[6rem] h-[4rem] md:w-[7rem]"
+                  className="w-[6.5rem] h-[3rem]"
                 />
               </Link>
             </div>
-            <Button
-              type="link"
-              text={"Contact Us"}
-              href="contact-us"
-              className="px-4 lg:px-6 py-2 text-fontDesk lg:text-fontDeskLarge rounded-full text-white transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow hover:opacity-90"
-            />
+            {(() => {
+              const contactItem = navData.items.find(
+                (item) =>
+                  item.title.toLowerCase() === "contact" ||
+                  item.title.toLowerCase() === "contact us"
+              );
+
+              if (!contactItem) return null;
+
+              return (
+                <Button
+                  type="link"
+                  text={contactItem.title}
+                  href={contactItem.url}
+                  target={contactItem.target}
+                  className="px-4 lg:px-6 py-2 text-fontDesk md:text-fontDeskLarge rounded-full text-white transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow hover:opacity-90"
+                />
+              );
+            })()}
           </div>
         </Wrapper>
       </div>
@@ -74,30 +94,88 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             <Link href="/">
               <Image
-                src={mainLogo}
+                src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${logo}`}
                 alt="logo-header-desk"
                 height={80}
-                width={160}
+                width={176}
                 unoptimized
-                className="w-[10rem] h-[5rem]"
+                className="w-[11rem] h-[5rem]"
               />
             </Link>
 
             <ul className="relative flex items-center gap-gapLargest">
-              {navData.map((item, index) => (
-                <li
-                  key={index}
-                  className="relative text-fontDeskLarge flex items-center"
-                >
-                  <Link className="text-black" href={`/${item.path}`}>
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
+              {navData.items.map((item, index) => {
+                if (
+                  item.title.toLowerCase() === "contact" ||
+                  item.title.toLowerCase() === "contact us"
+                ) {
+                  return (
+                    <li key={index}>
+                      <Button
+                        type="link"
+                        text={item.title}
+                        href={item.url}
+                        target={item.target}
+                      />
+                    </li>
+                  );
+                }
 
-              <li>
-                <Button type="link" text={"Contact Us"} href="contact-us" />
-              </li>
+                if (item.url === "button") {
+                  return (
+                    <li key={index}>
+                      <button>{item.title}</button>
+                    </li>
+                  );
+                }
+
+                if (item.has_child && item.children?.length > 0) {
+                  return (
+                    <li
+                      key={index}
+                      className="relative group text-fontDeskLarge flex items-center"
+                    >
+                      <span className="cursor-pointer hover:text-white transition-colors duration-300 flex items-center">
+                        {item.title}{" "}
+                        <RiArrowDropDownLine color="black" size={"1.5rem"} />
+                      </span>
+                      <DropdownContent className="min-w-[12rem] top-full hidden group-hover:block rounded-md">
+                        <ul className="flex flex-col gap-2 p-4">
+                          {item.children.map((child) => (
+                            <li
+                              key={child.id}
+                              className="border-b pb-gapMed last:pb-0 last:border-none"
+                            >
+                              <Link
+                                href={child.url}
+                                target={child.target}
+                                className="text-black text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
+                              >
+                                {child.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </DropdownContent>
+                    </li>
+                  );
+                }
+
+                return (
+                  <li
+                    key={index}
+                    className="relative text-fontDeskLarge flex items-center"
+                  >
+                    <Link
+                      className="text-black hover:text-white transition-colors duration-300"
+                      href={item.url}
+                      target={item.target}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </Wrapper>
@@ -107,3 +185,15 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+//------------------EXTRA CODE------------------------
+// const navData = [
+//   { title: "About Us", path: "about-us" },
+//   { title: "Career", path: "career" },
+//   { title: "Services", path: "services" },
+//   { title: "Products", path: "products" },
+//   { title: "Categories", path: "categories" },
+//   { title: "Product Range", path: "product-range" },
+//   { title: "Post Your Requirement", path: "post-requirement" },
+// ];
+// import mainLogo from "@/images/logo.svg";

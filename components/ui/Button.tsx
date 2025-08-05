@@ -6,6 +6,7 @@ type ButtonProps = {
   type?: "button" | "link";
   text: string;
   href?: string;
+  target?: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -13,10 +14,11 @@ const Button: React.FC<ButtonProps> = ({
   type = "button",
   text,
   href = "#",
+  target,
 }) => {
   if (type === "link") {
     return (
-      <Link href={`/${href}`} className={className}>
+      <Link href={href} className={className} target={target}>
         {text}
       </Link>
     );
