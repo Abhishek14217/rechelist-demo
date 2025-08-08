@@ -3,26 +3,10 @@ import Link from "next/link";
 
 import SectionHeader from "@/components/ui/SectionHeader";
 import Wrapper from "@/components/ui/Wrapper";
+import { CategoriesResponse } from "@/types/products";
+import { getRange } from "@/apis/get-apis";
 
-import productImgOne from "@/images/product-range-one.png";
-import productImgTwo from "@/images/product-range-two.png";
-import productImgThree from "@/images/product-range-three.png";
-import productImgFour from "@/images/product-range-four.png";
-import productImgFive from "@/images/product-range-five.png";
-import productImgSix from "@/images/product-range-six.png";
-import productImgSeven from "@/images/product-range-seven.png";
 import chooseArrow from "@/images/why-choose-arrow.png";
-
-const rangeListData = [
-  { title: "Range One", img: productImgOne, path: "#" },
-  { title: "Range Two", img: productImgTwo, path: "#" },
-  { title: "Range Three", img: productImgThree, path: "#" },
-  { title: "Range Four", img: productImgFour, path: "#" },
-  { title: "Range Five", img: productImgFive, path: "#" },
-  { title: "Range Six", img: productImgSix, path: "#" },
-  { title: "Range Seven", img: productImgSeven, path: "#" },
-  { title: "Range Eight", img: productImgOne, path: "#" },
-];
 
 const chooseUsData = [
   {
@@ -50,7 +34,8 @@ const chooseUsData = [
   },
 ];
 
-const ProductRangeList = () => {
+const ProductRangeList = async () => {
+  const productsRange: CategoriesResponse = await getRange();
   return (
     <>
       {/* --------------------------PRODUCTS RANGE---------------------------- */}
@@ -62,15 +47,15 @@ const ProductRangeList = () => {
               subText="Product Range"
             />
             <div className="flex overflow-x-scroll no-scrollbar md:grid md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr] gap-gap">
-              {rangeListData.map((item, index) => (
+              {productsRange.data.map((item, index) => (
                 <div key={index} className="flex flex-col gap-gap">
                   <div className="relative group lg:overflow-hidden rounded-xl">
                     <Link
-                      href={item.path}
+                      href={`/type/${item.slug}`}
                       className="h-[12rem] md:h-[18rem] w-[12rem] lg:w-full block"
                     >
                       <Image
-                        src={item.img}
+                        src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${item.image}`}
                         alt={item.title}
                         className="rounded-xl object-cover transition-transform duration-500 group-hover:scale-105"
                         fill
@@ -86,7 +71,12 @@ const ProductRangeList = () => {
                       </div>
                     </Link>
                   </div>
-                  <Link href={item.path} className="text-fontDesk md:text-fontDeskLargest lg:hidden">{item.title}</Link>
+                  <Link
+                    href={`/type/${item.slug}`}
+                    className="text-fontDeskLarge md:text-fontDeskLargest bg-clip-text text-transparent bg-gradient-to-r from-primaryOrange to-secondaryYellow text-center lg:hidden"
+                  >
+                    {item.title}
+                  </Link>
                 </div>
               ))}
             </div>
@@ -144,3 +134,23 @@ const ProductRangeList = () => {
 };
 
 export default ProductRangeList;
+
+//------------------------EXTRA CODE------------------------------
+// import productImgOne from "@/images/product-range-one.png";
+// import productImgTwo from "@/images/product-range-two.png";
+// import productImgThree from "@/images/product-range-three.png";
+// import productImgFour from "@/images/product-range-four.png";
+// import productImgFive from "@/images/product-range-five.png";
+// import productImgSix from "@/images/product-range-six.png";
+// import productImgSeven from "@/images/product-range-seven.png";
+
+// const rangeListData = [
+//   { title: "Range One", img: productImgOne, path: "#" },
+//   { title: "Range Two", img: productImgTwo, path: "#" },
+//   { title: "Range Three", img: productImgThree, path: "#" },
+//   { title: "Range Four", img: productImgFour, path: "#" },
+//   { title: "Range Five", img: productImgFive, path: "#" },
+//   { title: "Range Six", img: productImgSix, path: "#" },
+//   { title: "Range Seven", img: productImgSeven, path: "#" },
+//   { title: "Range Eight", img: productImgOne, path: "#" },
+// ];

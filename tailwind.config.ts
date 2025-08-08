@@ -16,6 +16,9 @@ export default {
         grayCustom1: "#afafaf",
         grayCustom2: "#9c9c9c",
         grayNeutral: "#f0f0f0",
+        dangerRedText: "#BC0202",
+        dangerRedInput: "#D5002060",
+        successGreen: "#30a448",
       },
 
       fontSize: {

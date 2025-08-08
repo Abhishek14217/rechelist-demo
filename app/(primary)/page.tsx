@@ -11,10 +11,13 @@ import {
   getBannerAndDesc,
   getCertificates,
   getSpeciality,
-} from "@/apis/get-static-data";
+  getBlogs,
+  getFeaturedProducts,
+  getTestimonials,
+  getAboutUsData,
+} from "@/apis/get-apis";
 import { generateSeoMetadata } from "@/utils/generateSeoMetadata";
 import { getAbsoluteUrl } from "@/utils/helper";
-import { getBlogs } from "@/apis/get-blogs";
 
 export const generateMetadata = async () => {
   const pageData = await getBannerAndDesc();
@@ -29,8 +32,21 @@ export default async function Home() {
 
   // PARALLEL DATA FETCHING FOR NON CRITICAL ELEMENTS WITH ERROR HANDELLING
   // Errors don’t break other requests (with Promise.allSettled())
-  const [allCertificatesResult, specialityResult, blogsResult] =
-    await Promise.allSettled([getCertificates(), getSpeciality(), getBlogs()]);
+  const [
+    allCertificatesResult,
+    specialityResult,
+    blogsResult,
+    featuredProductsResult,
+    testimonialsResult,
+    aboutUsResult,
+  ] = await Promise.allSettled([
+    getCertificates(),
+    getSpeciality(),
+    getBlogs(),
+    getFeaturedProducts(),
+    getTestimonials(),
+    getAboutUsData(),
+  ]);
 
   const allCertificates =
     allCertificatesResult.status === "fulfilled"
@@ -42,6 +58,17 @@ export default async function Home() {
 
   const blogsData =
     blogsResult.status === "fulfilled" ? blogsResult.value : null;
+
+  const featuredData =
+    featuredProductsResult.status === "fulfilled"
+      ? featuredProductsResult.value
+      : null;
+
+  const testimonialsData =
+    testimonialsResult.status === "fulfilled" ? testimonialsResult.value : null;
+
+  const aboutUsData =
+    aboutUsResult.status === "fulfilled" ? aboutUsResult.value : null;
 
   const latestBlogs = blogsData?.data?.slice(0, 4) || [];
 
@@ -57,10 +84,10 @@ export default async function Home() {
         </div>
         <ProductCategoriesList />
         <ProductRangeList />
-        <Certifications certificates={allCertificates} />
-        <HomeProductsList />
+        <Certifications certificates={allCertificates} aboutUs={aboutUsData} />
+        <HomeProductsList products={featuredData} />
         <Speciality data={specialityData} />
-        <Testimonials />
+        <Testimonials testimonials={testimonialsData} />
         <BlogsHome blogs={latestBlogs} />
       </>
     </main>

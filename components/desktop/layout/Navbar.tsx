@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,6 +11,7 @@ import OffCanvas from "@/components/ui/OffCanvas";
 import NavMob from "@/components/mobile/layout/NavMob";
 import DropdownContent from "@/components/ui/DropdownContent";
 import { MenuGroup } from "@/types/nav-items";
+import { CategoriesResponse } from "@/types/products";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -17,15 +19,26 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 type NavBarProps = {
   navData: MenuGroup;
   logo: string;
+  categories: CategoriesResponse;
+  range: CategoriesResponse;
 };
 
-const Navbar: React.FC<NavBarProps> = ({ navData, logo }) => {
+const Navbar: React.FC<NavBarProps> = ({
+  navData,
+  logo,
+  categories,
+  range,
+}) => {
+  const pathname = usePathname();
   const [sideBarOffCanvasOpen, setSideBarOffCanvasOpen] = useState(false);
 
   //--------------------TOGGLE SIDEBAR OFF-CANVAS----------------------
   const toggleSideBarOffCanvas = () => {
     setSideBarOffCanvasOpen((prevState) => !prevState);
   };
+
+  //-------------Checking for homepage----------
+  const isHomePage = pathname === "/";
 
   return (
     <>
@@ -46,6 +59,8 @@ const Navbar: React.FC<NavBarProps> = ({ navData, logo }) => {
                   item.title.toLowerCase() !== "contact us"
               ),
             }}
+            categories={categories}
+            range={range}
           />
         </OffCanvas>
         <Wrapper>
@@ -124,31 +139,49 @@ const Navbar: React.FC<NavBarProps> = ({ navData, logo }) => {
                 if (item.url === "button") {
                   return (
                     <li key={index}>
-                      <button>{item.title}</button>
+                      <button
+                        className={`transition-colors duration-300 ${
+                          isHomePage
+                            ? "hover:text-white"
+                            : "hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow"
+                        }`}
+                      >
+                        {item.title}
+                      </button>
                     </li>
                   );
                 }
 
-                if (item.has_child && item.children?.length > 0) {
+                if (item.url === "range" || item.url === "categories") {
+                  const dropdownData =
+                    item.url === "range" ? range.data : categories.data;
+
+                  const dynamicURL = item.url === "range" ? "type" : "category";
+
                   return (
                     <li
                       key={index}
                       className="relative group text-fontDeskLarge flex items-center"
                     >
-                      <span className="cursor-pointer hover:text-white transition-colors duration-300 flex items-center">
+                      <span
+                        className={`${
+                          isHomePage
+                            ? "hover:text-white"
+                            : "hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow"
+                        } cursor-pointer  transition-colors duration-300 flex items-center`}
+                      >
                         {item.title}{" "}
                         <RiArrowDropDownLine color="black" size={"1.5rem"} />
                       </span>
-                      <DropdownContent className="min-w-[12rem] top-full hidden group-hover:block rounded-md">
+                      <DropdownContent className="min-w-[12rem] top-full hidden group-hover:block rounded-md shadow-custom">
                         <ul className="flex flex-col gap-2 p-4">
-                          {item.children.map((child) => (
+                          {dropdownData.map((child) => (
                             <li
                               key={child.id}
                               className="border-b pb-gapMed last:pb-0 last:border-none"
                             >
                               <Link
-                                href={child.url}
-                                target={child.target}
+                                href={`/${dynamicURL}/${child.slug}`}
                                 className="text-black text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
                               >
                                 {child.title}
@@ -167,7 +200,11 @@ const Navbar: React.FC<NavBarProps> = ({ navData, logo }) => {
                     className="relative text-fontDeskLarge flex items-center"
                   >
                     <Link
-                      className="text-black hover:text-white transition-colors duration-300"
+                      className={`transition-colors duration-300 ${
+                        isHomePage
+                          ? "hover:text-white"
+                          : "hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow"
+                      }`}
                       href={item.url}
                       target={item.target}
                     >

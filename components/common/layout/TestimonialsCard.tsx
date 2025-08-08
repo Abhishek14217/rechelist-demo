@@ -1,23 +1,20 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+
 import Slider from "react-slick";
+import { Testimonial } from "@/types/static-items";
 
 import leftArrow from "@/icons/arrow-left.svg";
 import rightArrow from "@/icons/arrow-right.svg";
+import avatar from "@/images/user-avatar.png";
 
 type TestimonialsCardProps = {
-  img: StaticImageData;
-  content: string;
-  author: string;
-  company: string;
+  testimonial: Testimonial;
   isActive?: boolean;
   sliderRef?: Slider | null;
 };
 
 const TestimonialsCard: React.FC<TestimonialsCardProps> = ({
-  img,
-  content,
-  author,
-  company,
+  testimonial,
   isActive,
   sliderRef,
 }) => {
@@ -34,8 +31,12 @@ const TestimonialsCard: React.FC<TestimonialsCardProps> = ({
       {/* Left Side Image */}
       <div className="flex-shrink-0">
         <Image
-          src={img}
-          alt={author}
+          src={
+            testimonial.photo
+              ? `${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${testimonial.photo}`
+              : avatar
+          }
+          alt={`Testimonial-${testimonial.id}`}
           width={96}
           height={96}
           unoptimized
@@ -46,7 +47,7 @@ const TestimonialsCard: React.FC<TestimonialsCardProps> = ({
       {/* Right Side Content */}
       <div className="flex flex-col justify-between flex-1 gap-gap">
         <p className="text-fontDesk leading-relaxed font-light">
-          {content}
+          {testimonial.message}
         </p>
 
         <div className="flex justify-between items-center">
@@ -56,14 +57,14 @@ const TestimonialsCard: React.FC<TestimonialsCardProps> = ({
                 isActive ? "text-white" : "text-black"
               }`}
             >
-              {author}
+              {testimonial.name}
             </h6>
             <p
               className={`italic text-fontDesk ${
                 isActive ? "text-white/90" : "text-gray-600"
               }`}
             >
-              {company}
+              {testimonial.company}
             </p>
           </div>
 

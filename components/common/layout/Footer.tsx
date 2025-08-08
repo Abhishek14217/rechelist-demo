@@ -3,13 +3,12 @@ import Link from "next/link";
 import { JSX } from "react";
 
 import Wrapper from "@/components/ui/Wrapper";
-import CustomInput from "@/components/ui/Input";
 import { Contact, MenuGroup } from "@/types/nav-items";
 
-import mailBtn from "@/icons/newsletter-btn.svg";
 import locationIcon from "@/icons/location-icon.svg";
 import mailIcon from "@/icons/mail-icon.svg";
 import phoneIcon from "@/icons/phone-icon.svg";
+import NewsletterForm from "../forms/NewsletterForm";
 import {
   IconBrandFacebook,
   IconBrandTwitter,
@@ -72,27 +71,7 @@ const Footer: React.FC<FooterProps> = ({
               </Link>
               <p className="text-fontDesk">{description}</p>
             </div>
-            <div className="flex flex-col gap-gapSmall lg:gap-gap w-full lg:w-3/4">
-              <h6 className="text-fontDeskLargest font-semibold">Newsletter</h6>
-              <div className="relative">
-                <CustomInput
-                  type="text"
-                  placeholder="Your Email Address"
-                  name="email"
-                  className="w-full rounded-full bg-white px-4 py-3 pr-12 text-fontDesk shadow-sm outline-none"
-                />
-                <button className="absolute top-1/2 right-2 -translate-y-1/2">
-                  <Image
-                    src={mailBtn}
-                    alt="newsletter-button"
-                    width={32}
-                    height={32}
-                    unoptimized
-                    className="size-[2rem]"
-                  />
-                </button>
-              </div>
-            </div>
+            <NewsletterForm />
           </div>
 
           <div className="flex flex-col gap-gapUltra border-b border-gray-300 pb-gapUltra">

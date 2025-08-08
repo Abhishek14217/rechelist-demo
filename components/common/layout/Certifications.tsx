@@ -3,16 +3,20 @@ import Image from "next/image";
 import Wrapper from "@/components/ui/Wrapper";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
-import { CertificationsType } from "@/types/static-items";
+import { AboutData, CertificationsType } from "@/types/static-items";
 
 import aboutOne from "@/images/about-company-one.png";
 import aboutTwo from "@/images/about-company-two.png";
 
 type CertificationsProps = {
   certificates: CertificationsType;
+  aboutUs: AboutData;
 };
 
-const Certifications: React.FC<CertificationsProps> = ({ certificates }) => {
+const Certifications: React.FC<CertificationsProps> = ({
+  certificates,
+  aboutUs,
+}) => {
   return (
     <>
       {/* --------------------------CERTIFICATIONS---------------------------- */}
@@ -30,7 +34,7 @@ const Certifications: React.FC<CertificationsProps> = ({ certificates }) => {
                 {certificates.description}
               </p>
             </div>
-            <div className="flex lg:justify-between items-center overflow-x-scroll no-scrollbar gap-gapLargest lg:gap-0">
+            <div className="flex lg:justify-between items-center overflow-x-scroll no-scrollbar gap-gapLargest">
               {certificates.certifications.map((item, index) => (
                 <Image
                   src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${item.image}`}
@@ -53,17 +57,26 @@ const Certifications: React.FC<CertificationsProps> = ({ certificates }) => {
             {/* LEFT SECTION */}
             <div className="relative flex justify-center items-center">
               {/* Main doctor/scientist image */}
-              <Image
-                src={aboutOne}
-                alt="About Company"
-                className="rounded-2xl w-[15rem] h-[20rem] lg:w-[20rem] lg:h-[25.75rem] object-cover shadow-md"
-              />
-              {/* Small image overlapping */}
-              <Image
-                src={aboutTwo}
-                alt="About Company"
-                className="absolute bottom-[1.5rem] left-[-3rem] lg:left-[-4.5rem] w-[10rem] lg:w-[12.5rem] h-[12rem] lg:h-[13.75rem] rounded-xl object-cover shadow-lg border-4 border-white"
-              />
+              {aboutUs.gallery[0] && (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${aboutUs.gallery[0]}`}
+                  alt="About Main"
+                  width={320}
+                  height={412}
+                  className="rounded-2xl w-[15rem] h-[20rem] lg:w-[20rem] lg:h-[25.75rem] object-cover shadow-md"
+                />
+              )}
+
+              {/* Overlapping image (second in gallery) */}
+              {aboutUs.gallery[1] && (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${aboutUs.gallery[1]}`}
+                  alt="About Secondary"
+                  width={200}
+                  height={220}
+                  className="absolute bottom-[1.5rem] left-[-3rem] lg:left-[-4.5rem] w-[10rem] lg:w-[12.5rem] h-[12rem] lg:h-[13.75rem] rounded-xl object-cover shadow-lg border-4 border-white"
+                />
+              )}
               {/* Badge */}
               <div className="absolute bottom-12 left-[45%] md:left-[35%] transform -translate-x-1/2 bg-gradient-to-r from-primaryOrange to-secondaryYellow text-white px-6 py-6 rounded-full shadow-lg flex flex-col items-center justify-center w-20 h-20">
                 <span className="text-2xl font-bold">4+</span>
@@ -74,37 +87,22 @@ const Certifications: React.FC<CertificationsProps> = ({ certificates }) => {
             {/* RIGHT SECTION */}
             <div className="flex flex-col gap-gapLargest">
               <SectionHeader
-                mainText="About Company"
-                subText="Empowering Healthcare with Innovation"
+                mainText={aboutUs.name}
+                subText={aboutUs.description}
                 isBlock
                 subTextClass="text-[0.95rem] md:text-[1.5rem] lg:text-fontDeskUltra"
               />
-              <div className="flex flex-col gap-gapSmall text-fontDesk">
-                <p className="leading-relaxed">
-                  Rechelist Pharma is a trusted name in the pharmaceutical
-                  industry, committed to delivering excellence through
-                  innovation, quality, and integrity. As a leading provider of
-                  PCD Pharma Franchise and Third Party Manufacturing services,
-                  we empower healthcare businesses across India with
-                  high-quality, affordable medicines.
-                </p>
-                <p className="leading-relaxed">
-                  Driven by a strong mission and vision, we focus on building
-                  long-term partnerships with our clients by offering reliable
-                  products, transparent processes, and timely support. With a
-                  wide range of DCGI-approved formulations and WHO–GMP certified
-                  manufacturing facilities, we ensure that every product meets
-                  the highest standards of safety and efficacy.
-                </p>
-                <p className="leading-relaxed">
-                  At Rechelist Pharma, we don’t just make medicines — we build
-                  trust, enable growth, and contribute to a healthier future.
-                </p>
-              </div>
+
+              <div
+                className="leading-relaxed text-fontDesk flex flex-col gap-gapSmall"
+                dangerouslySetInnerHTML={{
+                  __html: aboutUs.content,
+                }}
+              />
 
               <Button
                 text="Know More About Us"
-                href="#"
+                href={`/${aboutUs.slug}`}
                 type="link"
                 className="w-fit mx-auto md:mx-[unset] text-white px-4 lg:px-6 py-2 rounded-full transition-all duration-300 bg-gradient-to-r from-primaryOrange to-secondaryYellow hover:opacity-90 text-fontDesk lg:text-fontDeskLarge"
               />

@@ -1,7 +1,11 @@
 import Footer from "@/components/common/layout/Footer";
 import Navbar from "@/components/desktop/layout/Navbar";
-import { getNavItems } from "@/apis/get-nav-items";
-import { getLogoAndDesc } from "@/apis/get-static-data";
+import {
+  getLogoAndDesc,
+  getNavItems,
+  getCategories,
+  getRange,
+} from "@/apis/get-apis";
 
 export default async function PrimaryLayout({
   children,
@@ -9,14 +13,22 @@ export default async function PrimaryLayout({
   children: React.ReactNode;
 }) {
   //------PARALLEL DATA FETCHING FOR CRITICAL ELEMENTS--------------------
-  const [navItems, logoAndDesc] = await Promise.all([
-    getNavItems(),
-    getLogoAndDesc(),
-  ]);
+  const [navItems, logoAndDesc, categoryItems, productsRange] =
+    await Promise.all([
+      getNavItems(),
+      getLogoAndDesc(),
+      getCategories(),
+      getRange(),
+    ]);
 
   return (
     <div className="primary-layout flex min-h-screen flex-col">
-      <Navbar navData={navItems.menus[0]} logo={logoAndDesc.logo} />
+      <Navbar
+        navData={navItems.menus[0]}
+        logo={logoAndDesc.logo}
+        categories={categoryItems}
+        range={productsRange}
+      />
       <div className="flex-1">{children}</div>
       <Footer
         socialLinks={navItems.menus[1]}

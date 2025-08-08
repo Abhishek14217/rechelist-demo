@@ -1,17 +1,27 @@
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { MenuGroup } from "@/types/nav-items";
+import { CategoriesResponse } from "@/types/products";
 
 import { AiOutlineClose, AiOutlineRight } from "react-icons/ai";
 
 type NavMobProps = {
   close: () => void;
   navData: MenuGroup;
+  categories: CategoriesResponse;
+  range: CategoriesResponse;
 };
 
-const NavMob: React.FC<NavMobProps> = ({ close, navData }) => {
+const NavMob: React.FC<NavMobProps> = ({
+  close,
+  navData,
+  categories,
+  range,
+}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const pathname = usePathname();
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -35,14 +45,19 @@ const NavMob: React.FC<NavMobProps> = ({ close, navData }) => {
           if (item.url === "button") {
             return (
               <li key={index}>
-                <button className="text-fontDesk md:text-fontDeskLarge bg-clip-text text-transparent bg-gradient-to-r from-primaryOrange to-secondaryYellow">
+                <button className="text-fontDesk md:text-fontDeskLarge font-semibold">
                   {item.title}
                 </button>
               </li>
             );
           }
 
-          if (item.has_child && item.children?.length > 0) {
+          if (item.url === "range" || item.url === "categories") {
+            const dropdownData =
+              item.url === "range" ? range.data : categories.data;
+
+            const dynamicURL = item.url === "range" ? "type" : "category";
+
             const isOpen = openIndex === index;
             return (
               <li key={index}>
@@ -64,12 +79,15 @@ const NavMob: React.FC<NavMobProps> = ({ close, navData }) => {
                   }`}
                 >
                   <ul className="pl-4 flex flex-col gap-2">
-                    {item.children.map((child) => (
+                    {dropdownData.map((child) => (
                       <li key={child.id}>
                         <Link
-                          href={child.url}
-                          target={child.target}
-                          className="block py-1 text-gray-600 hover:text-primaryOrange text-fontDesk md:text-fontDeskLarge"
+                          href={`/${dynamicURL}/${child.slug}`}
+                          className={`block py-1 text-fontDesk md:text-fontDeskLarge ${
+                            pathname === `/${dynamicURL}/${child.slug}`
+                              ? "bg-clip-text text-transparent bg-gradient-to-r from-primaryOrange to-secondaryYellow"
+                              : "text-gray-600 hover:text-primaryOrange"
+                          }`}
                           onClick={close}
                         >
                           {child.title}
@@ -87,7 +105,11 @@ const NavMob: React.FC<NavMobProps> = ({ close, navData }) => {
               <Link
                 target={item.target}
                 href={item.url}
-                className="text-fontDesk md:text-fontDeskLarge"
+                className={`text-fontDesk md:text-fontDeskLarge ${
+                  pathname === item.url
+                    ? "bg-clip-text text-transparent bg-gradient-to-r from-primaryOrange to-secondaryYellow"
+                    : "text-black"
+                }`}
                 onClick={close}
               >
                 {item.title}
