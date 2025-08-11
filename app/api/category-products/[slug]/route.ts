@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { fetchFromAPI } from "@/apis/get-apis";
 
-export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {
-  const { slug } = params;
+type Params = Promise<{ slug: string }>;
+
+export async function GET(req: NextRequest, { params }: { params: Params }) {
+  const { slug } = await params;
   const searchParams = req.nextUrl.searchParams;
   const page = Number(searchParams.get("page") || 1);
 
