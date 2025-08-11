@@ -1,30 +1,24 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import { Product } from "@/types/products";
 
-type ProductCardProps = {
-  id: number;
-  title: string;
-  image: string;
-  category: string; // Tablet, Capsule, etc.
-  composition: string;
-  packaging: string;
-  price: string;
-};
+type ProductCardProps = Product;
 
 export default function ProductCard({
+  id,
   title,
+  combination,
+  pack,
+  mrp,
   image,
-  category,
-  composition,
-  packaging,
-  price,
+  type,
 }: ProductCardProps) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.1)] hover:shadow-[0px_0px_4px_rgba(0,0,0,0.2)] transition flex flex-col">
       {/* Image */}
-      <div className="w-full h-52 relative">
+      <div className="w-full h-[15rem] relative">
         <Image
-          src={image}
+          src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${image}`}
           alt={title}
           fill
           className="object-cover rounded-t-2xl"
@@ -34,8 +28,8 @@ export default function ProductCard({
       {/* Content */}
       <div className="p-5 flex flex-col gap-3">
         {/* Badge */}
-        <span className="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full w-fit">
-          {category}
+        <span className="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full w-fit capitalize">
+          {type}
         </span>
 
         {/* Title */}
@@ -44,13 +38,13 @@ export default function ProductCard({
         </h4>
 
         {/* Composition */}
-        <p className="text-sm text-gray-600">{composition}</p>
+        <p className="text-sm text-gray-600">{combination}</p>
 
         {/* Packaging */}
-        <p className="text-sm text-gray-500">{packaging}</p>
+        <p className="text-sm text-gray-500">{pack}</p>
 
         {/* Price */}
-        <p className="text-sm font-semibold text-primaryOrange">{price}</p>
+        <p className="text-sm font-semibold text-primaryOrange">{mrp}</p>
 
         {/* CTA */}
         <div className="mt-2">

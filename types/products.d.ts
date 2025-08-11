@@ -22,7 +22,7 @@ export type CategoriesResponse = {
   message: string;
 };
 
-//-------------------FEATURD PRODUCTS TYPE----------------------
+//-------------------FEATURD PRODUCTS TYPE / CATEGORY WISE PRODUCTS TYPE----------------------
 export type Product = {
   id: number;
   title: string;
@@ -36,12 +36,40 @@ export type Product = {
 export type ProductCategoryType = {
   id: number;
   title: string;
+  short_description: string | null;
   slug: string;
 };
 
 export type ProductsResponse = {
   success: boolean;
   category: ProductCategoryType;
+  current_page: number;
+  last_page: number;
+  per_page: number;
+  total: number;
+  data: Product[];
+  message: string;
+};
+
+// --------------------TYPE WISE PRODUCTS TYPE-----------------------
+export type TypeWiseProductsResponse = {
+  success: boolean;
+  type: ProductCategoryType;
+  current_page: number;
+  last_page: number;
+  per_page: number;
+  total: number;
+  data: Product[];
+  message: string;
+};
+
+// --------------------ALL PRODUCTS TYPE-----------------------
+export type AllProductsResponse = {
+  success: boolean;
+  current_page: number;
+  last_page: number;
+  per_page: number;
+  total: number;
   data: Product[];
   message: string;
 };

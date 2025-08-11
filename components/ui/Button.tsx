@@ -7,6 +7,7 @@ type ButtonProps = {
   text: string;
   href?: string;
   target?: string;
+  onClick?: () => void;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -15,6 +16,7 @@ const Button: React.FC<ButtonProps> = ({
   text,
   href = "#",
   target,
+  onClick,
 }) => {
   if (type === "link") {
     return (
@@ -24,7 +26,11 @@ const Button: React.FC<ButtonProps> = ({
     );
   }
 
-  return <button className={className}>{text}</button>;
+  return (
+    <button className={className} onClick={onClick}>
+      {text}
+    </button>
+  );
 };
 
 export default Button;

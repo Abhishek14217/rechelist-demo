@@ -104,7 +104,7 @@ const Navbar: React.FC<NavBarProps> = ({
       </div>
 
       {/*--------------------- DESKTOP NAVBAR ---------------------*/}
-      <nav className="mt-gap relative z-10 hidden lg:block">
+      <nav className="mt-gap relative z-[100] hidden lg:block">
         <Wrapper>
           <div className="flex items-center justify-between">
             <Link href="/">

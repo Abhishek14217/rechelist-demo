@@ -5,14 +5,34 @@ import { usePathname } from "next/navigation";
 
 type BreadcrumbProps = {
   title?: string;
-  subtitle?: string;
+  subtitle?: string | null | undefined;
 };
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, subtitle }) => {
   const pathname = usePathname();
-
-  // remove empty segments
   const pathSegments = pathname.split("/").filter((seg) => seg !== "");
+
+  const fallbackSubtitle = "Explore our collection";
+  const displaySubtitle = subtitle?.trim() || fallbackSubtitle;
+
+  // Remove unwanted segments like "category" or "type"
+  const breadcrumbSegments = [...pathSegments];
+
+  // Remove "category" and "type" segments if they are at index 0
+  if (
+    breadcrumbSegments[0] === "category" ||
+    breadcrumbSegments[0] === "type"
+  ) {
+    breadcrumbSegments.shift();
+  }
+
+  // Helper to format segment text
+  const formatSegment = (segment: string) => {
+    return segment
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   return (
     <div className="flex flex-col gap-gap justify-center items-center">
@@ -24,11 +44,9 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, subtitle }) => {
           {title}
         </h1>
 
-        {subtitle && (
-          <p className="text-white text-fontDesk md:text-fontDeskLarge">
-            {subtitle}
-          </p>
-        )}
+        <p className="text-white text-fontDesk md:text-fontDeskLarge">
+          {displaySubtitle}
+        </p>
       </div>
       <ol className="text-white flex space-x-2 text-fontDesk md:text-fontDeskLarge text-center">
         <li>
@@ -37,18 +55,18 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, subtitle }) => {
           </Link>
         </li>
 
-        {pathSegments.map((segment, index) => {
+        {breadcrumbSegments.map((segment, index) => {
           const href = "/" + pathSegments.slice(0, index + 1).join("/");
-          const isLast = index === pathSegments.length - 1;
+          const isLast = index === breadcrumbSegments.length - 1;
 
           return (
             <li key={href} className="flex items-center space-x-2">
               <span className="mx-2">{">"}</span>
               {isLast ? (
-                <span className="capitalize">{segment}</span>
+                <span className="capitalize">{formatSegment(segment)}</span>
               ) : (
                 <Link href={href} className="hover:underline capitalize">
-                  {segment}
+                  {formatSegment(segment)}
                 </Link>
               )}
             </li>
