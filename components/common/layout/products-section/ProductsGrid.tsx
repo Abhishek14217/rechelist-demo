@@ -58,7 +58,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
       const endpoint =
         pageType === "allProducts"
           ? `/api/all-products`
-          : pageType === "typeWiseSegregation"
+          : pageType === "type"
           ? `/api/type-products/${slug}`
           : `/api/category-products/${slug}`;
 

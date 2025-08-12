@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 type FetchOptions = {
   throw404?: boolean;
   params?: Record<string, string | number | boolean | undefined>;
-};
+} & RequestInit; // Allow native fetch options like `next: { revalidate }`
 
 const buildURL = (endpoint: string, params?: FetchOptions["params"]) => {
   const url = new URL(`${process.env.SERVER_API_URL}${endpoint}`);
@@ -20,7 +20,8 @@ export const fetchFromAPI = async (
   endpoint: string,
   options?: FetchOptions
 ) => {
-  const url = buildURL(endpoint, options?.params);
+  const { throw404, params, ...fetchOptions } = options || {};
+  const url = buildURL(endpoint, params);
 
   const res = await fetch(url, {
     method: "GET",
@@ -28,9 +29,10 @@ export const fetchFromAPI = async (
       "Content-Type": "application/json",
       "X-API-KEY": process.env.API_KEY as string,
     },
+    ...fetchOptions,
   });
 
-  if (options?.throw404 && res.status === 404) {
+  if (throw404 && res.status === 404) {
     notFound();
   }
 
@@ -46,7 +48,10 @@ export const getCategories = () => fetchFromAPI("/product-categories");
 
 export const getRange = () => fetchFromAPI("/product-types");
 
-export const getFeaturedProducts = () => fetchFromAPI("/products/featured");
+export const getFeaturedProducts = () =>
+  fetchFromAPI("/products/featured", {
+    next: { revalidate: 3600 },
+  });
 
 // ---------------- STATIC DATA APIs ----------------
 export const getLogoAndDesc = () => fetchFromAPI("/theme-options/logo");
@@ -60,7 +65,10 @@ export const getSpeciality = () => fetchFromAPI("/why-us");
 export const getPcdOpportunity = () =>
   fetchFromAPI("/site-options/pcd-franchise");
 
-export const getTestimonials = () => fetchFromAPI("/testimonials");
+export const getTestimonials = () =>
+  fetchFromAPI("/testimonials", {
+    next: { revalidate: 3600 },
+  });
 
 // ---------------- NAVIGATION ----------------
 export const getNavItems = () => fetchFromAPI("/menus");

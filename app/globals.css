@@ -9,6 +9,8 @@
 @layer base {
   :root {
     --primary-blue-css: #0098db;
+    --primary-orange-css: #f16237;
+    --secondary-yellow-css: #fdba2f;
   }
 
   * {
@@ -141,6 +143,22 @@
 
   .slick-disabled {
     opacity: 0.3;
+  }
+}
+
+/* -----------------------LOADING SPINNER-----------------------------*/
+.loading-icon {
+  animation: spin 1s infinite linear;
+  height: 3.75rem;
+  width: 3.75rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
