@@ -25,7 +25,7 @@ const ProductCategoriesList = async () => {
         <Wrapper>
           <div className="flex flex-col gap-gapLargest lg:gap-gapUltra">
             <SectionHeader mainText="Categories" subText="Product Categories" />
-            <div className="flex items-center justify-between gap-gapLarge lg:gap-0 overflow-x-scroll no-scrollbar">
+            <div className="flex items-center justify-between gap-gap lg:gap-0 overflow-x-scroll no-scrollbar">
               {filteredCategories.map((item, index) => (
                 <Link
                   href={`/category/${item.slug}`}

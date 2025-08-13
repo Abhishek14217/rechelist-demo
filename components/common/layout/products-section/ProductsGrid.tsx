@@ -85,7 +85,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
 
   if (!hasProducts) {
     return (
-      <p className="text-center text-gray-500 py-8 text-lg font-medium">
+      <p className="text-center text-gray-500 py-4 lg:py-8 text-lg font-medium">
         No products found!
       </p>
     );
@@ -94,7 +94,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
   return (
     <div>
       {/* Products Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
         ))}
@@ -103,7 +103,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
       <hr className="my-8 border-gray-200" />
 
       {/* Show More Button + Status */}
-      <div className="mt-8 flex items-center justify-center relative">
+      <div className="mt-8 flex flex-col-reverse gap-gap lg:gap-0 items-center justify-center relative">
         {!allLoaded && (
           <Button
             type="button"
@@ -115,7 +115,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
           />
         )}
 
-        <span className="absolute right-0 flex items-center gap-2 font-semibold text-gray-700 text-fontDesk">
+        <span className="lg:absolute right-0 flex items-center gap-2 font-semibold text-gray-700 text-fontDesk">
           <svg
             className="w-5 h-5 text-primaryOrange"
             fill="currentColor"

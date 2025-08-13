@@ -20,13 +20,13 @@ const ProductsListingLayout: React.FC<ProductsListingLayoutProps> = ({
   pageType,
 }) => {
   return (
-    <div className="mt-sectionGap">
+    <div className="mt-0 lg:mt-gapLargest">
       {/* Banner */}
       <Suspense fallback={<BannerSkeleton />}>
         <ProductsBannerSection slug={slug} pageType={pageType} />
       </Suspense>
       <Wrapper>
-        <div className="mx-auto mt-sectionGap flex flex-col lg:grid lg:grid-cols-[0.35fr_1fr] gap-8 lg:gap-12">
+        <div className="mx-auto mt-gapUltra flex flex-col lg:grid lg:grid-cols-[0.35fr_1fr] gap-8 lg:gap-12">
           {/* Sidebar */}
           <Suspense fallback={<SidebarSkeleton />}>
             <SidebarSection />

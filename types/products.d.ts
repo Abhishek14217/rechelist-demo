@@ -38,6 +38,10 @@ export type ProductCategoryType = {
   title: string;
   short_description: string | null;
   slug: string;
+  seo_title: string;
+  seo_description: string;
+  seo_image: string;
+  banner_image: string;
 };
 
 export type ProductsResponse = {
@@ -64,12 +68,20 @@ export type TypeWiseProductsResponse = {
 };
 
 // --------------------ALL PRODUCTS TYPE-----------------------
+export type AllProductsSEO = {
+  seo_title: string;
+  seo_description: string;
+  seo_image: string;
+  banner_image: string;
+};
+
 export type AllProductsResponse = {
   success: boolean;
   current_page: number;
   last_page: number;
   per_page: number;
   total: number;
+  allproducts: AllProductsSEO;
   data: Product[];
   message: string;
 };

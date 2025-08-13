@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +11,7 @@ import NavMob from "@/components/mobile/layout/NavMob";
 import DropdownContent from "@/components/ui/DropdownContent";
 import { MenuGroup } from "@/types/nav-items";
 import { CategoriesResponse } from "@/types/products";
+import { useSidebar } from "@/hooks/useSidebarMob";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -29,13 +29,8 @@ const Navbar: React.FC<NavBarProps> = ({
   categories,
   range,
 }) => {
+  const { sideBarOpen, toggleSidebar, closeSidebar } = useSidebar();
   const pathname = usePathname();
-  const [sideBarOffCanvasOpen, setSideBarOffCanvasOpen] = useState(false);
-
-  //--------------------TOGGLE SIDEBAR OFF-CANVAS----------------------
-  const toggleSideBarOffCanvas = () => {
-    setSideBarOffCanvasOpen((prevState) => !prevState);
-  };
 
   //-------------Checking for homepage----------
   const isHomePage = pathname === "/";
@@ -45,12 +40,12 @@ const Navbar: React.FC<NavBarProps> = ({
       {/*--------------------- MOBILE NAVBAR --------------------------------*/}
       <div className="block lg:hidden bg-white top-[-0.5px] left-0 w-full z-[99] sticky py-gapSmall shadow-md">
         <OffCanvas
-          close={toggleSideBarOffCanvas}
-          offcanvas={sideBarOffCanvasOpen}
+          close={closeSidebar}
+          offcanvas={sideBarOpen}
           className="left-0 -translate-x-full max-w-[75%] w-[26.875rem] overflow-scroll"
         >
           <NavMob
-            close={toggleSideBarOffCanvas}
+            close={closeSidebar}
             navData={{
               ...navData,
               items: navData.items.filter(
@@ -66,7 +61,7 @@ const Navbar: React.FC<NavBarProps> = ({
         <Wrapper>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-gap">
-              <button onClick={toggleSideBarOffCanvas}>
+              <button onClick={toggleSidebar}>
                 <GiHamburgerMenu size={20} />
               </button>
               <Link href="/">
@@ -234,3 +229,9 @@ export default Navbar;
 //   { title: "Post Your Requirement", path: "post-requirement" },
 // ];
 // import mainLogo from "@/images/logo.svg";
+// const [sideBarOffCanvasOpen, setSideBarOffCanvasOpen] = useState(false);
+
+// //--------------------TOGGLE SIDEBAR OFF-CANVAS----------------------
+// const toggleSideBarOffCanvas = () => {
+//   setSideBarOffCanvasOpen((prevState) => !prevState);
+// };

@@ -44,13 +44,19 @@ export const fetchFromAPI = async (
 };
 
 // ---------------- PRODUCT APIs ----------------
-export const getCategories = () => fetchFromAPI("/product-categories");
+export const getCategories = () =>
+  fetchFromAPI("/product-categories", {
+    next: { revalidate: 600 },
+  });
 
-export const getRange = () => fetchFromAPI("/product-types");
+export const getRange = () =>
+  fetchFromAPI("/product-types", {
+    next: { revalidate: 600 },
+  });
 
 export const getFeaturedProducts = () =>
   fetchFromAPI("/products/featured", {
-    next: { revalidate: 3600 },
+    next: { revalidate: 600 },
   });
 
 // ---------------- STATIC DATA APIs ----------------
@@ -81,12 +87,21 @@ export const getAboutUsData = () => fetchFromAPI("/pages/about-us");
 
 // ---------------- TYPE/ CATEGORY/ PRODUCTS ROUTE API ----------------
 export const getCategoryWiseProducts = (slug: string) =>
-  fetchFromAPI(`/products/${slug}`, { throw404: true });
+  fetchFromAPI(`/products/${slug}`, {
+    throw404: true,
+    next: { revalidate: 600 },
+  });
 
 export const getTypeWiseProducts = (slug: string) =>
-  fetchFromAPI(`/products/type/${slug}`, { throw404: true });
+  fetchFromAPI(`/products/type/${slug}`, {
+    throw404: true,
+    next: { revalidate: 600 },
+  });
 
-export const getAllProducts = () => fetchFromAPI("/products");
+export const getAllProducts = () =>
+  fetchFromAPI("/products", {
+    next: { revalidate: 600 },
+  });
 
 //-----------------------------------EXTRA CODE------------------------------------
 // export const getPcdOpportunity = async () => {
