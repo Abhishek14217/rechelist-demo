@@ -2,12 +2,12 @@ import { Suspense } from "react";
 
 import Wrapper from "@/components/ui/Wrapper";
 import ProductsBannerSection from "@/components/common/layout/ProductsBannerSection";
-import SidebarSection from "@/components/common/layout/categories-sidebar/CategoriesSidebarSection";
-import RangeBarSection from "@/components/common/layout/range-bar/RangeBarSection";
+import SidebarSection from "@/components/desktop/layout/categories-sidebar/CategoriesSidebarSection";
+import RangeBarSection from "@/components/desktop/layout/range-bar/RangeBarSection";
 import ProductsSection from "@/components/common/layout/products-section/ProductsSection";
 import BannerSkeleton from "@/components/common/skeletons/BannerSkeleton";
-import SidebarSkeleton from "@/components/common/skeletons/SidebarSkeleton";
-import RangeBarSkeleton from "@/components/common/skeletons/RangeBarSkeleton";
+import SidebarSkeleton from "@/components/desktop/skeletons/SidebarSkeleton";
+import RangeBarSkeleton from "@/components/desktop/skeletons/RangeBarSkeleton";
 import ProductsGridSkeleton from "@/components/common/skeletons/ProductsGridSkeleton";
 
 type ProductsListingLayoutProps = {
