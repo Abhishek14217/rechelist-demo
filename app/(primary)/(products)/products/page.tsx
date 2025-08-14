@@ -2,6 +2,7 @@ import ProductsListingLayout from "@/components/common/layout/ProductsListingLay
 import { getAllProducts } from "@/apis/get-apis";
 import { getAbsoluteUrl } from "@/utils/helper";
 import { generateSeoMetadata } from "@/utils/generateSeoMetadata";
+import { AllProductsPageProps } from "@/types/union";
 
 export const generateMetadata = async () => {
   const pageData = await getAllProducts();
@@ -11,7 +12,13 @@ export const generateMetadata = async () => {
 };
 
 const Products = async () => {
-  return <ProductsListingLayout pageType="allProducts" />;
+  const pageData = await getAllProducts();
+
+  const props: AllProductsPageProps = {
+    pageType: "allProducts",
+    data: pageData,
+  };
+  return <ProductsListingLayout {...props} />;
 };
 
 export default Products;

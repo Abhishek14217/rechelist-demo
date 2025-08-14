@@ -1,5 +1,6 @@
 import { getTypeWiseProducts } from "@/apis/get-apis";
 import ProductsListingLayout from "@/components/common/layout/ProductsListingLayout";
+import { TypePageProps } from "@/types/union";
 import { generateSeoMetadata } from "@/utils/generateSeoMetadata";
 import { getAbsoluteUrl } from "@/utils/helper";
 
@@ -16,8 +17,15 @@ export const generateMetadata = async ({ params }: { params: Params }) => {
 
 const ProductTypes = async ({ params }: { params: Params }) => {
   const { slug } = await params;
+  const pageData = await getTypeWiseProducts(slug);
 
-  return <ProductsListingLayout slug={slug} pageType="type" />;
+  const props: TypePageProps = {
+    pageType: "type",
+    slug,
+    data: pageData,
+  };
+
+  return <ProductsListingLayout {...props} />;
 };
 
 export default ProductTypes;

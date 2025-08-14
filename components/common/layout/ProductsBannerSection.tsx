@@ -1,52 +1,38 @@
 import Image, { StaticImageData } from "next/image";
 
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import {
-  getAllProducts,
-  getCategoryWiseProducts,
-  getTypeWiseProducts,
-} from "@/apis/get-apis";
 import MobileCategoryBar from "@/components/mobile/layout/MobileCategoryBar";
 import Wrapper from "@/components/ui/Wrapper";
 
 import demo from "@/images/demo-banner.jpg";
+import { UnionProductsProps } from "@/types/union";
 
-type ProductsBannerSectionProps = {
-  slug?: string;
-  pageType?: "category" | "type" | "allProducts";
-};
-
-export default async function ProductsBannerSection({
-  slug,
-  pageType,
-}: ProductsBannerSectionProps) {
-  let data: any;
+export default function ProductsBannerSection(props: UnionProductsProps) {
   let title: string;
   let subtitle: string;
   let bgImage: string | StaticImageData = demo;
 
-  if (pageType === "category") {
-    data = await getCategoryWiseProducts(slug!);
-    title = data.category?.title || "Products";
+  if (props.pageType === "category") {
+    title = props.data.category?.title || "Products";
     subtitle =
-      data.category?.short_description || "Explore Our Wide Range Of Products";
-    bgImage = data.category?.banner_image
-      ? `${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${data.category.banner_image}`
+      props.data.category?.short_description ||
+      "Explore Our Wide Range Of Products";
+    bgImage = props.data.category?.banner_image
+      ? `${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${props.data.category.banner_image}`
       : demo;
-  } else if (pageType === "type") {
-    data = await getTypeWiseProducts(slug!);
-    title = data.type?.title || "Products";
+  } else if (props.pageType === "type") {
+    title = props.data.type?.title || "Products";
     subtitle =
-      data.type?.short_description || "Explore Our Wide Range Of Products";
-    bgImage = data.type?.banner_image
-      ? `${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${data.type.banner_image}`
+      props.data.type?.short_description ||
+      "Explore Our Wide Range Of Products";
+    bgImage = props.data.type?.banner_image
+      ? `${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${props.data.type.banner_image}`
       : demo;
   } else {
-    data = await getAllProducts();
     title = "Products";
     subtitle = "Explore Our Wide Range Of Products";
-    bgImage = data.allproducts?.banner_image
-      ? `${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${data.allproducts.banner_image}`
+    bgImage = props.data.allproducts?.banner_image
+      ? `${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${props.data.allproducts.banner_image}`
       : demo;
   }
 
@@ -60,7 +46,9 @@ export default async function ProductsBannerSection({
         </div>
       </section>
       <Wrapper>
-        <MobileCategoryBar activeCategory={slug ? title : "All Products"} />
+        <MobileCategoryBar
+          activeCategory={props.slug ? title : "All Products"}
+        />
       </Wrapper>
     </div>
   );

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { format } from "date-fns";
 import Wrapper from "@/components/ui/Wrapper";
@@ -23,7 +24,7 @@ const BlogsHome: React.FC<BlogsHomeProps> = ({ blogs }) => {
             {blogs.map((blog, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-[0_3px_10px_rgba(0,123,255,0.15)] overflow-hidden flex flex-col hover:shadow-[0_3px_20px_rgba(0,123,255,0.25)] transition-shadow"
+                className="bg-white rounded-2xl shadow-[0_3px_10px_rgba(0,123,255,0.1)] overflow-hidden flex flex-col hover:shadow-[0_3px_20px_rgba(0,123,255,0.2)] transition-shadow"
               >
                 {/* Image */}
                 <div className="relative w-full h-56">
@@ -39,14 +40,17 @@ const BlogsHome: React.FC<BlogsHomeProps> = ({ blogs }) => {
                 <div className="flex flex-col gap-gapLarge p-5">
                   <div className="flex flex-col flex-grow gap-gapSmall">
                     <p className="text-sm text-grayCustom2">
-                      {format(new Date(blog.updated_at), "MMM dd, yyyy")}
+                      {format(new Date(blog.created_at), "MMM dd, yyyy")}
                     </p>
-                    <h3
-                      className="text-lg font-semibold text-gray-900 line-clamp-2"
-                      title={blog.name}
-                    >
-                      {blog.name}
-                    </h3>
+                    <Link href={`/blog/${blog.slug}`}>
+                      <h3
+                        className="text-lg font-semibold text-gray-900 line-clamp-2"
+                        title={blog.name}
+                      >
+                        {blog.name}
+                      </h3>
+                    </Link>
+
                     <p className="text-sm text-grayCustom1 line-clamp-3">
                       {blog.description}
                     </p>

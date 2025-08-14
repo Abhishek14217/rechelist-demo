@@ -1,28 +1,8 @@
-import {
-  getAllProducts,
-  getCategoryWiseProducts,
-  getTypeWiseProducts,
-} from "@/apis/get-apis";
 import ProductsGrid from "./ProductsGrid";
+import { UnionProductsProps } from "@/types/union";
 
-type ProductsSectionProps = {
-  slug?: string;
-  pageType: "category" | "type" | "allProducts";
-};
-
-const ProductsSection: React.FC<ProductsSectionProps> = async ({
-  slug,
-  pageType,
-}) => {
-  let data: any;
-
-  if (pageType === "category") {
-    data = await getCategoryWiseProducts(slug!);
-  } else if (pageType === "type") {
-    data = await getTypeWiseProducts(slug!);
-  } else {
-    data = await getAllProducts();
-  }
+const ProductsSection = (props: UnionProductsProps) => {
+  const { data, pageType, slug } = props;
 
   return (
     <ProductsGrid
@@ -31,6 +11,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = async ({
       last_page={data.last_page}
       total={data.total}
       pageType={pageType}
+      slug={slug}
     />
   );
 };

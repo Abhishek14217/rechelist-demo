@@ -2,50 +2,48 @@
 
 import { useEffect, useState } from "react";
 
+import { Post } from "@/types/blog";
+import BlogsCard from "./BlogsCard";
 import Button from "@/components/ui/Button";
-import ProductCard from "./ProductCard";
-import { Product } from "@/types/products";
 
-type ProductsGridProps = {
-  productsList: Product[];
+type BlogsListProps = {
+  blogsList: Post[];
   per_page?: number;
   last_page?: number;
   total?: number;
-  pageType: "category" | "type" | "allProducts";
-  slug?: string;
+  pageType?: string;
 };
 
-const ProductsGrid: React.FC<ProductsGridProps> = ({
-  productsList,
+const BlogsList: React.FC<BlogsListProps> = ({
+  blogsList,
   per_page,
   last_page,
   total,
   pageType,
-  slug,
 }) => {
   const [loading, setLoading] = useState(false);
   const [allLoaded, setAllLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [products, setProducts] = useState<Product[]>(productsList ?? []);
+  const [blogs, setBlogs] = useState<Post[]>(blogsList ?? []);
 
-  const hasProducts = products.length > 0;
+  const hasBlogs = blogs.length > 0;
 
-  // Check if all products are already loaded
+  // Check if all blogs are already loaded
   useEffect(() => {
-    const totalProductsCount = total ?? 0;
+    const totalBlogsCount = total ?? 0;
 
-    if (totalProductsCount > 0 && products.length >= totalProductsCount) {
+    if (totalBlogsCount > 0 && blogs.length >= totalBlogsCount) {
       setAllLoaded(true);
     } else if (
       !last_page ||
       last_page <= 1 ||
-      products.length < (per_page ?? 10)
+      blogs.length < (per_page ?? 10)
     ) {
       setAllLoaded(true);
     } else {
       setAllLoaded(false);
     }
-  }, [last_page, products.length, per_page, total]);
+  }, [last_page, blogs.length, per_page, total]);
 
   const handleShowMore = async () => {
     if (loading || allLoaded) return;
@@ -53,18 +51,13 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
     setLoading(true);
     try {
       const nextPage = currentPage + 1;
-      const endpoint =
-        pageType === "allProducts"
-          ? `/api/all-products`
-          : pageType === "type"
-          ? `/api/type-products/${slug}`
-          : `/api/category-products/${slug}`;
+      const endpoint = pageType === "allBlogs" && `/api/all-blogs`;
 
       const res = await fetch(`${endpoint}?page=${nextPage}`);
       const data = await res.json();
 
       if (res.ok && data?.data?.length > 0) {
-        setProducts((prev) => [...prev, ...data.data]);
+        setBlogs((prev) => [...prev, ...data.data]);
         setCurrentPage(nextPage);
 
         if (nextPage >= (data.last_page ?? 1)) {
@@ -74,34 +67,32 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
         setAllLoaded(true);
       }
     } catch (err) {
-      console.error("Error fetching more products:", err);
+      console.error("Error fetching more blogs:", err);
       setAllLoaded(true);
     } finally {
       setLoading(false);
     }
   };
 
-  if (!hasProducts) {
+  if (!hasBlogs) {
     return (
       <p className="text-center text-gray-500 py-4 lg:py-8 text-lg font-medium">
-        No products found!
+        No blogs found!
       </p>
     );
   }
 
   return (
     <div>
-      {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
+      {/* Blogs List */}
+      <div className="flex flex-col gap-8">
+        {blogs.map((blog) => (
+          <BlogsCard key={blog.id} blog={blog} />
         ))}
       </div>
 
-      <hr className="my-8 border-gray-200" />
-
       {/* Show More Button + Status */}
-      <div className="mt-8 flex flex-col-reverse gap-gap lg:gap-0 items-center justify-center relative">
+      <div className="mt-12 flex flex-col-reverse gap-gap lg:gap-0 items-center justify-center relative">
         {!allLoaded && (
           <Button
             type="button"
@@ -121,13 +112,11 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
           >
             <path d="M4 3h4v4H4V3zM4 9h4v4H4V9zM4 15h4v4H4v-4zM10 3h4v4h-4V3zM10 9h4v4h-4V9zM10 15h4v4h-4v-4zM16 3h4v4h-4V3zM16 9h4v4h-4V9zM16 15h4v4h-4v-4z" />
           </svg>
-          {`Showing 1-${products.length} of ${
-            total ?? products.length
-          } Products`}
+          {`Showing 1-${blogs.length} of ${total ?? blogs.length} Blogs`}
         </span>
       </div>
     </div>
   );
 };
 
-export default ProductsGrid;
+export default BlogsList;

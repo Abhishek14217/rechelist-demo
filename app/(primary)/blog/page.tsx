@@ -1,5 +1,7 @@
+import BlogListingLayout from "@/components/common/layout/blog/BlogListingLayout";
+
 const AllBlogsPage = () => {
-  return <div>AllBlogsPage</div>;
+  return <BlogListingLayout pageType="allBlogs" />
 };
 
 export default AllBlogsPage;
