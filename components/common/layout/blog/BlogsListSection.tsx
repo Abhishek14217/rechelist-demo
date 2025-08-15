@@ -1,29 +1,21 @@
-import { getBlogs } from "@/apis/get-apis";
 import BlogsList from "./BlogsList";
+import { UnionBlogsProps } from "@/types/union";
 
-type BlogsListSectionProps = {
-  slug?: string;
-  pageType: "allBlogs";
-};
-
-const BlogsListSection: React.FC<BlogsListSectionProps> = async ({
-  slug,
-  pageType,
-}) => {
-  let data: any;
-
-  if (pageType === "allBlogs") {
-    data = await getBlogs();
-  }
+const BlogsListSection = (props: UnionBlogsProps) => {
+  const { data, pageType, slug } = props;
 
   return (
-    <BlogsList
-      blogsList={data.data}
-      per_page={data.meta.per_page}
-      last_page={data.meta.last_page}
-      total={data.meta.total}
-      pageType={pageType}
-    />
+    <div className="flex flex-col gap-gapLargest">
+      <h3 className="text-[2rem] font-semibold text-center">Explore All Blogs</h3>
+      <BlogsList
+        blogsList={data.data}
+        per_page={data.meta.per_page}
+        last_page={data.meta.last_page}
+        total={data.meta.total}
+        pageType={pageType}
+        slug={slug}
+      />
+    </div>
   );
 };
 

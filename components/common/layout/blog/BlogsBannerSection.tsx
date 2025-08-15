@@ -1,24 +1,16 @@
 import Image, { StaticImageData } from "next/image";
 
+import { UnionBlogsProps } from "@/types/union";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 
 import demo from "@/images/demo-banner.jpg";
 
-type BlogsBannerSectionProps = {
-  slug?: string;
-  pageType?: "allBlogs";
-};
-
-export default async function BlogsBannerSection({
-  slug,
-  pageType,
-}: BlogsBannerSectionProps) {
+export default async function BlogsBannerSection(props: UnionBlogsProps) {
   let title: string = "Blogs";
   let subtitle: string = "Explore Our Blogs";
   let bgImage: string | StaticImageData = demo;
 
-  if (pageType === "allBlogs") {
-    // API CALL (SEE PRODUCTS PAGE)
+  if (props.pageType === "allBlogs") {
     title = "Blogs";
     subtitle = "Explore Our Blogs";
     bgImage = demo;

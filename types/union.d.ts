@@ -1,3 +1,4 @@
+//----------------------PRODUCTS----------------------------
 import {
   AllProductsResponse,
   ProductsResponse,
@@ -26,3 +27,15 @@ export type UnionProductsProps =
   | CategoryBannerProps
   | TypeBannerProps
   | AllProductsBannerProps;
+
+//----------------------BLOGS----------------------------
+import { Post, PostsApiResponse } from "./blog";
+
+export type AllBlogsPageProps = {
+  pageType: "allBlogs";
+  data: PostsApiResponse;
+  slug?: string;
+  recentData?: Post[];
+};
+
+export type UnionBlogsProps = AllBlogsPageProps;

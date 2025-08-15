@@ -24,7 +24,7 @@ const BlogsCard: React.FC<BlogsCardProps> = ({ blog }) => {
     : blogDemo;
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
+    <div className="flex flex-col sm:flex-row gap-4 rounded-lg overflow-hidden bg-white shadow-[0_3px_10px_rgba(0,123,255,0.15)] hover:shadow-[0_3px_20px_rgba(0,123,255,0.2)] transition-shadow duration-300">
       {/* Image */}
       <Link
         href={blogUrl}
@@ -41,10 +41,7 @@ const BlogsCard: React.FC<BlogsCardProps> = ({ blog }) => {
         </div>
 
         {/* Title */}
-        <Link
-          href={blogUrl}
-          className="block"
-        >
+        <Link href={blogUrl} className="block">
           <h3 className="text-lg font-semibold leading-snug transition-colors duration-300 hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow">
             {blog.name}
           </h3>

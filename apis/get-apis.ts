@@ -60,16 +60,30 @@ export const getFeaturedProducts = () =>
   });
 
 // ---------------- STATIC DATA APIs ----------------
-export const getLogoAndDesc = () => fetchFromAPI("/theme-options/logo");
+export const getLogoAndDesc = () =>
+  fetchFromAPI("/theme-options/logo", {
+    next: { revalidate: 3600 },
+  });
 
-export const getBannerAndDesc = () => fetchFromAPI("/site-desc");
+export const getBannerAndDesc = () =>
+  fetchFromAPI("/site-desc", {
+    next: { revalidate: 3600 },
+  });
 
-export const getCertificates = () => fetchFromAPI("/certifications");
+export const getCertificates = () =>
+  fetchFromAPI("/certifications", {
+    next: { revalidate: 3600 },
+  });
 
-export const getSpeciality = () => fetchFromAPI("/why-us");
+export const getSpeciality = () =>
+  fetchFromAPI("/why-us", {
+    next: { revalidate: 3600 },
+  });
 
 export const getPcdOpportunity = () =>
-  fetchFromAPI("/site-options/pcd-franchise");
+  fetchFromAPI("/site-options/pcd-franchise", {
+    next: { revalidate: 3600 },
+  });
 
 export const getTestimonials = () =>
   fetchFromAPI("/testimonials", {
@@ -77,13 +91,22 @@ export const getTestimonials = () =>
   });
 
 // ---------------- NAVIGATION ----------------
-export const getNavItems = () => fetchFromAPI("/menus");
+export const getNavItems = () =>
+  fetchFromAPI("/menus", {
+    next: { revalidate: 600 },
+  });
 
 // ---------------- BLOGS ----------------
-export const getBlogs = () => fetchFromAPI("/posts");
+export const getBlogs = () =>
+  fetchFromAPI("/posts", {
+    next: { revalidate: 3600 },
+  });
 
 // ---------------- PAGES ----------------
-export const getAboutUsData = () => fetchFromAPI("/pages/about-us");
+export const getAboutUsData = () =>
+  fetchFromAPI("/pages/about-us", {
+    next: { revalidate: 3600 },
+  });
 
 // ---------------- TYPE/ CATEGORY/ PRODUCTS ROUTE API ----------------
 export const getCategoryWiseProducts = (slug: string) =>

@@ -15,7 +15,7 @@ const ProductsListingLayout = (props: UnionProductsProps) => {
           <SidebarSection />
           <main className="flex-1">
             <RangeBarSection />
-             <ProductsSection {...props} />
+            <ProductsSection {...props} />
           </main>
         </div>
       </Wrapper>

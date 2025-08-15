@@ -1,6 +1,14 @@
+import dynamic from "next/dynamic";
+
 import { getFeaturedProducts, getTestimonials } from "@/apis/get-apis";
-import HomeProductsList from "@/components/common/layout/HomeProductsList";
-import Testimonials from "@/components/common/layout/Testimonials";
+
+const HomeProductsList = dynamic(
+  () => import("@/components/common/layout/HomeProductsList")
+);
+
+const Testimonials = dynamic(
+  () => import("@/components/common/layout/Testimonials")
+);
 
 export default async function ProductsParentLayout({
   children,

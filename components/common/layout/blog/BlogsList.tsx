@@ -11,7 +11,8 @@ type BlogsListProps = {
   per_page?: number;
   last_page?: number;
   total?: number;
-  pageType?: string;
+  pageType?: "allBlogs";
+  slug?: string;
 };
 
 const BlogsList: React.FC<BlogsListProps> = ({
@@ -20,6 +21,7 @@ const BlogsList: React.FC<BlogsListProps> = ({
   last_page,
   total,
   pageType,
+  slug,
 }) => {
   const [loading, setLoading] = useState(false);
   const [allLoaded, setAllLoaded] = useState(false);

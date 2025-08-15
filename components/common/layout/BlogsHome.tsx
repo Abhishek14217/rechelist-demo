@@ -24,7 +24,7 @@ const BlogsHome: React.FC<BlogsHomeProps> = ({ blogs }) => {
             {blogs.map((blog, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-[0_3px_10px_rgba(0,123,255,0.1)] overflow-hidden flex flex-col hover:shadow-[0_3px_20px_rgba(0,123,255,0.2)] transition-shadow"
+                className="bg-white rounded-2xl shadow-[0_3px_10px_rgba(0,123,255,0.1)] overflow-hidden flex flex-col hover:shadow-[0_3px_20px_rgba(0,123,255,0.2)] transition-shadow duration-300"
               >
                 {/* Image */}
                 <div className="relative w-full h-56">

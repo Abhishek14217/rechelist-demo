@@ -5,9 +5,6 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import { AboutData, CertificationsType } from "@/types/static-items";
 
-import aboutOne from "@/images/about-company-one.png";
-import aboutTwo from "@/images/about-company-two.png";
-
 type CertificationsProps = {
   certificates: CertificationsType;
   aboutUs: AboutData;

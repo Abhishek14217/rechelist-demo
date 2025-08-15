@@ -1,12 +1,12 @@
+import dynamic from "next/dynamic";
+
 import BannerContent from "@/components/common/layout/BannerContent";
 import BlogsHome from "@/components/common/layout/BlogsHome";
 import Certifications from "@/components/common/layout/Certifications";
-import HomeProductsList from "@/components/common/layout/HomeProductsList";
 import MainBanner from "@/components/common/layout/MainBanner";
 import ProductCategoriesList from "@/components/common/layout/ProductCategoriesList";
 import ProductRangeList from "@/components/common/layout/ProductRangeList";
 import Speciality from "@/components/common/layout/Speciality";
-import Testimonials from "@/components/common/layout/Testimonials";
 import {
   getBannerAndDesc,
   getCertificates,
@@ -18,6 +18,14 @@ import {
 } from "@/apis/get-apis";
 import { generateSeoMetadata } from "@/utils/generateSeoMetadata";
 import { getAbsoluteUrl } from "@/utils/helper";
+
+const HomeProductsList = dynamic(
+  () => import("@/components/common/layout/HomeProductsList")
+);
+
+const Testimonials = dynamic(
+  () => import("@/components/common/layout/Testimonials")
+);
 
 export const generateMetadata = async () => {
   const pageData = await getBannerAndDesc();

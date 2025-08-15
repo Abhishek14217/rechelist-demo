@@ -15,16 +15,10 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, subtitle }) => {
   const fallbackSubtitle = "Explore our collection";
   const displaySubtitle = subtitle?.trim() || fallbackSubtitle;
 
-  // Remove unwanted segments like "category" or "type"
-  const breadcrumbSegments = [...pathSegments];
-
-  // Remove "category" and "type" segments if they are at index 0
-  if (
-    breadcrumbSegments[0] === "category" ||
-    breadcrumbSegments[0] === "type"
-  ) {
-    breadcrumbSegments.shift();
-  }
+  // Filter out unwanted segments like "category" or "type"
+  const breadcrumbSegments = pathSegments.filter(
+    (seg) => seg !== "category" && seg !== "type"
+  );
 
   // Helper to format segment text
   const formatSegment = (segment: string) => {
@@ -48,6 +42,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, subtitle }) => {
           {displaySubtitle}
         </p>
       </div>
+
       <ol className="text-white flex space-x-2 text-fontDesk md:text-fontDeskLarge text-center">
         <li>
           <Link href="/" className="hover:underline">
@@ -56,7 +51,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, subtitle }) => {
         </li>
 
         {breadcrumbSegments.map((segment, index) => {
-          const href = "/" + pathSegments.slice(0, index + 1).join("/");
+          const href = "/" + breadcrumbSegments.slice(0, index + 1).join("/");
           const isLast = index === breadcrumbSegments.length - 1;
 
           return (
