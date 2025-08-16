@@ -12,7 +12,7 @@ export default function RecentBlogsSection(props: UnionBlogsProps) {
   const { recentData } = props;
 
   return (
-    <div className="flex flex-col gap-gapLargest">
+    <div className="flex flex-col gap-gap lg:gap-gapLargest">
       <h3 className="text-fontDeskLargest font-semibold">Recent Blogs</h3>
 
       <div className="flex flex-col gap-gapLargest">
@@ -39,7 +39,7 @@ export default function RecentBlogsSection(props: UnionBlogsProps) {
             <div className="flex flex-col">
               <span
                 title={blog.name}
-                className="text-fontDeskLarge font-medium text-gray-800 leading-snug group-hover:text-primaryOrange transition-colors line-clamp-2"
+                className="text-fontDeskLarge font-medium text-gray-800 leading-snug lg:group-hover:text-primaryOrange transition-colors line-clamp-2"
               >
                 {blog.name}
               </span>

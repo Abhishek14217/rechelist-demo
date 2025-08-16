@@ -10,9 +10,17 @@ const BlogListingLayout = (props: UnionBlogsProps) => {
     <div className="mt-0 lg:mt-gapLargest">
       <BlogsBannerSection {...props} />
       <Wrapper>
-        <div className="mx-auto mt-gapUltra flex flex-col lg:grid lg:grid-cols-[1fr_0.4fr] gap-8 lg:gap-20">
+        {/* Mobile layout (flex-col order: Categories -> BlogsList -> RecentBlogs) */}
+        <div className="md:hidden mx-auto mt-gapLargest lg:mt-gapUltra flex flex-col gap-8">
+          <BlogCategoriesSection />
           <BlogsListSection {...props} />
-          <main className="flex flex-col gap-[3rem] h-fit sticky top-0">
+          <RecentBlogsSection {...props} />
+        </div>
+
+        {/* Desktop layout (grid with BlogsList on left, sidebar on right) */}
+        <div className="hidden md:grid mx-auto mt-gapLargest lg:mt-gapUltra grid-cols-[1fr_0.4fr] gap-8 lg:gap-20">
+          <BlogsListSection {...props} />
+          <main className="flex flex-col gap-[3rem] h-fit sticky md:top-20 lg:top-8">
             <BlogCategoriesSection />
             <RecentBlogsSection {...props} />
           </main>

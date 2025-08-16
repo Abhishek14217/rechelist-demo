@@ -3,9 +3,9 @@ import Image, { StaticImageData } from "next/image";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import MobileCategoryBar from "@/components/mobile/layout/MobileCategoryBar";
 import Wrapper from "@/components/ui/Wrapper";
+import { UnionProductsProps } from "@/types/union";
 
 import demo from "@/images/demo-banner.jpg";
-import { UnionProductsProps } from "@/types/union";
 
 export default function ProductsBannerSection(props: UnionProductsProps) {
   let title: string;

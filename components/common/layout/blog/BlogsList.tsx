@@ -94,7 +94,7 @@ const BlogsList: React.FC<BlogsListProps> = ({
       </div>
 
       {/* Show More Button + Status */}
-      <div className="mt-12 flex flex-col-reverse gap-gap lg:gap-0 items-center justify-center relative">
+      <div className="mt-8 lg:mt-12 flex flex-col-reverse gap-gap lg:gap-0 items-center justify-center relative">
         {!allLoaded && (
           <Button
             type="button"

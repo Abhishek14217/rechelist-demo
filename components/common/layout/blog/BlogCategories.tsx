@@ -22,7 +22,7 @@ const BlogCategories: React.FC<BlogCategoriesProps> = ({ category }) => {
                 ${
                   isActive
                     ? "bg-gradient-to-r from-primaryOrange to-secondaryYellow text-white"
-                    : "bg-gray-100 text-black hover:bg-primaryOrange hover:text-white"
+                    : "bg-gray-100 text-black lg:hover:bg-primaryOrange lg:hover:text-white"
                 }
               `}
     >
