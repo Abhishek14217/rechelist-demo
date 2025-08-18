@@ -4,7 +4,7 @@ import RangeBarSkeleton from "@/components/desktop/skeletons/RangeBarSkeleton";
 import SidebarSkeleton from "@/components/desktop/skeletons/SidebarSkeleton";
 import Wrapper from "@/components/ui/Wrapper";
 
-const Loading = () => {
+const ProductsLoading = () => {
   return (
     <div className="mt-0 lg:mt-gapLargest">
       <BannerSkeleton />
@@ -21,4 +21,4 @@ const Loading = () => {
   );
 }
 
-export default Loading;
+export default ProductsLoading;

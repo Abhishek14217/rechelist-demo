@@ -8,6 +8,7 @@ export async function GET(req: NextRequest) {
   try {
     const data = await fetchFromAPI(`/products`, {
       params: { page },
+      next: { revalidate: 600 },
     });
     return NextResponse.json(data);
   } catch (error: any) {
