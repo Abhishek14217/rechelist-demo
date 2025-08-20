@@ -10,7 +10,7 @@ type InputProps = {
 const CustomInput = forwardRef<HTMLInputElement, InputProps>(
   ({ type, name, placeholder, className, ...rest }, ref) => {
     return (
-      <div className="group w-full rounded-full p-[1px] bg-transparent focus-within:bg-gradient-to-r focus-within:from-primaryOrange focus-within:to-secondaryYellow transition-all duration-300">
+      <div className="group w-full rounded-full p-[1px] bg-transparent">
         <input
           ref={ref}
           type={type}

@@ -3,17 +3,25 @@ import Image, { StaticImageData } from "next/image";
 import { UnionBlogsProps } from "@/types/union";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 
-import demo from "@/images/demo-banner.jpg";
+import blogBanner from "@/images/blog-banner.jpg";
 
 export default async function BlogsBannerSection(props: UnionBlogsProps) {
   let title: string = "Blogs";
-  let subtitle: string = "Explore Our Blogs";
-  let bgImage: string | StaticImageData = demo;
+  let subtitle: string = "Insights & Updates in Healthcare";
+  let bgImage: string | StaticImageData = blogBanner;
 
   if (props.pageType === "allBlogs") {
     title = "Blogs";
-    subtitle = "Explore Our Blogs";
-    bgImage = demo;
+    subtitle = "Insights & Updates in Healthcare";
+    bgImage = blogBanner;
+  } else if (props.pageType === "blogDetail") {
+    title = "Blog Detail";
+    subtitle = "Insights & Updates in Healthcare";
+    bgImage = blogBanner;
+  } else {
+    title = props.data.category.name;
+    subtitle = "Insights & Updates in Healthcare";
+    bgImage = blogBanner;
   }
 
   return (

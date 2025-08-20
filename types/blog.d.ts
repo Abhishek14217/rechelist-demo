@@ -22,8 +22,9 @@ export type Post = {
   slug: string;
   description: string;
   image: string;
-  categories: Category[];
+  categories?: Category[];
   tags: Tag[];
+  author: string;
   created_at: string; // ISO datetime string
   updated_at: string;
 };
@@ -61,4 +62,22 @@ export type PostsApiResponse = {
   meta: Meta;
   error: boolean;
   message: string | null;
+};
+
+//-------------------CATEGORY WISE BLOGS TYPE-------------------
+export type BlogPost = {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  content: string;
+  image: string;
+  author: string;
+  created_at: string;
+};
+
+export type BlogCategoryResponse = {
+  success: boolean;
+  category: Category;
+  posts: BlogPost[];
 };

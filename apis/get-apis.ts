@@ -96,9 +96,20 @@ export const getNavItems = () =>
     next: { revalidate: 600 },
   });
 
-// ---------------- BLOGS ----------------
+// --------------------------- BLOGS ---------------------------------
 export const getBlogs = () =>
   fetchFromAPI("/posts", {
+    next: { revalidate: 3600 },
+  });
+
+export const getBlogCategories = () =>
+  fetchFromAPI("/categories", {
+    next: { revalidate: 3600 },
+  });
+
+export const getCategoryWiseBlogs = (slug: string) =>
+  fetchFromAPI(`/categories/${slug}/posts`, {
+    throw404: true,
     next: { revalidate: 3600 },
   });
 

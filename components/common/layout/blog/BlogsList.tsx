@@ -2,20 +2,22 @@
 
 import { useEffect, useState } from "react";
 
-import { Post } from "@/types/blog";
+import { BlogPost, Post } from "@/types/blog";
 import BlogsCard from "./BlogsCard";
 import Button from "@/components/ui/Button";
 
 type BlogsListProps = {
-  blogsList: Post[];
+  categoryName?: string;
+  blogsList: Post[] | BlogPost[];
   per_page?: number;
   last_page?: number;
   total?: number;
-  pageType?: "allBlogs";
+  pageType?: "allBlogs" | "categoryBlogs";
   slug?: string;
 };
 
 const BlogsList: React.FC<BlogsListProps> = ({
+  categoryName,
   blogsList,
   per_page,
   last_page,
@@ -26,7 +28,7 @@ const BlogsList: React.FC<BlogsListProps> = ({
   const [loading, setLoading] = useState(false);
   const [allLoaded, setAllLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [blogs, setBlogs] = useState<Post[]>(blogsList ?? []);
+  const [blogs, setBlogs] = useState<Post[] | BlogPost[]>(blogsList ?? []);
 
   const hasBlogs = blogs.length > 0;
 
@@ -89,7 +91,7 @@ const BlogsList: React.FC<BlogsListProps> = ({
       {/* Blogs List */}
       <div className="flex flex-col gap-8">
         {blogs.map((blog) => (
-          <BlogsCard key={blog.id} blog={blog} />
+          <BlogsCard key={blog.id} blog={blog} categoryName={categoryName} />
         ))}
       </div>
 

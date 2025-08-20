@@ -3,6 +3,8 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { Product } from "@/types/products";
 
+import productDummyImg from "@/images/product-range-three.png";
+
 type ProductCardProps = Product;
 
 export default function ProductCard({
@@ -14,12 +16,16 @@ export default function ProductCard({
   image,
   type,
 }: ProductCardProps) {
+  const imageSrc = image
+    ? `${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${image}`
+    : productDummyImg;
+
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.1)] hover:shadow-[0px_0px_6px_rgba(0,0,0,0.15)] transition flex flex-col">
       {/* Image */}
       <div className="w-full h-48 md:h-56 relative">
         <Image
-          src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${image}`}
+          src={imageSrc}
           alt={title}
           fill
           sizes="(max-width: 640px) 100vw, 300px"

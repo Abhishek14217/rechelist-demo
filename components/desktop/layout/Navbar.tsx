@@ -12,9 +12,13 @@ import DropdownContent from "@/components/ui/DropdownContent";
 import { MenuGroup } from "@/types/nav-items";
 import { CategoriesResponse } from "@/types/products";
 import { useSidebar } from "@/hooks/useSidebarMob";
+import Modal from "@/components/ui/Modal";
+import { useModal } from "@/hooks/useModalContext";
+import ContactForm from "@/components/common/forms/ContactForm";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { RxCross2 } from "react-icons/rx";
 
 type NavBarProps = {
   navData: MenuGroup;
@@ -30,6 +34,8 @@ const Navbar: React.FC<NavBarProps> = ({
   range,
 }) => {
   const { sideBarOpen, toggleSidebar, closeSidebar } = useSidebar();
+  const { showModal, toggleModal, closeModal } = useModal();
+
   const pathname = usePathname();
 
   //-------------Checking for homepage----------
@@ -37,6 +43,23 @@ const Navbar: React.FC<NavBarProps> = ({
 
   return (
     <>
+      {showModal && (
+        <Modal
+          close={closeModal}
+          className="relative w-[85%] lg:w-[50%] left-[6%] lg:left-[25%] top-[2vh] lg:top-[5vh]"
+        >
+          <div className="flex justify-end">
+            <button
+              className="absolute top-[2.1rem] lg:top-[1.8rem] right-gapSmall lg:right-gap cursor-pointer border-none bg-white text-[1.5rem]"
+              onClick={closeModal}
+            >
+              <RxCross2 />
+            </button>
+          </div>
+          <ContactForm />
+        </Modal>
+      )}
+
       {/*--------------------- MOBILE NAVBAR --------------------------------*/}
       <div className="block lg:hidden bg-white top-[-0.5px] left-0 w-full z-[99] sticky py-gapSmall shadow-md">
         <OffCanvas
@@ -140,6 +163,7 @@ const Navbar: React.FC<NavBarProps> = ({
                             ? "hover:text-white"
                             : "hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow"
                         }`}
+                        onClick={toggleModal}
                       >
                         {item.title}
                       </button>

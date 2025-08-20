@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { MenuGroup } from "@/types/nav-items";
 import { CategoriesResponse } from "@/types/products";
+import { useModal } from "@/hooks/useModalContext";
 
 import { AiOutlineClose, AiOutlineRight } from "react-icons/ai";
 
@@ -21,6 +22,8 @@ const NavMob: React.FC<NavMobProps> = ({
   range,
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { toggleModal } = useModal();
+
   const pathname = usePathname();
 
   const toggleAccordion = (index: number) => {
@@ -45,7 +48,13 @@ const NavMob: React.FC<NavMobProps> = ({
           if (item.url === "button") {
             return (
               <li key={index}>
-                <button className="text-fontDesk md:text-fontDeskLarge font-semibold">
+                <button
+                  className="text-fontDesk md:text-fontDeskLarge font-semibold"
+                  onClick={() => {
+                    toggleModal();
+                    close();
+                  }}
+                >
                   {item.title}
                 </button>
               </li>

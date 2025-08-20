@@ -80,7 +80,7 @@ const NewsletterForm = () => {
               type={item.type}
               placeholder={item.placeholder}
               {...register(item.name as keyof TNewsSubscriptionSchema)}
-              className={`w-full rounded-full bg-white px-4 py-3 pr-12 text-fontDesk shadow-sm outline-none`}
+              className={`w-full rounded-full bg-white px-4 py-3 pr-12 text-fontDesk shadow-sm focus:border focus:outline-none focus:border-primaryOrange`}
             />
           ))}
 

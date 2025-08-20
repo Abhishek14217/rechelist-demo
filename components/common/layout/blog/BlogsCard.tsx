@@ -1,18 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Post } from "@/types/blog";
+import { BlogPost, Post } from "@/types/blog";
 import { format } from "date-fns";
-import { FaRegCalendarAlt, FaUser } from "react-icons/fa";
 
+import { FaRegCalendarAlt, FaUser } from "react-icons/fa";
 import blogDemo from "@/images/about-company-one.png";
 
 type BlogsCardProps = {
-  blog: Post;
+  blog: Post | BlogPost;
+  categoryName?: string;
 };
 
-const BlogsCard: React.FC<BlogsCardProps> = ({ blog }) => {
-  const firstCategory = blog.categories?.[0]?.name || "Uncategorized";
+const BlogsCard: React.FC<BlogsCardProps> = ({ blog, categoryName }) => {
+  const firstCategory = (blog as Post).categories?.[0]?.name || categoryName;
   const blogUrl = `/blog/${blog.slug}`;
 
   const formattedDate = blog.created_at
@@ -23,6 +24,10 @@ const BlogsCard: React.FC<BlogsCardProps> = ({ blog }) => {
     ? `${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${blog.image}`
     : blogDemo;
 
+  const blogTitle = (blog as BlogPost).title || (blog as Post).name;
+  const blogAuthor =
+    (blog as BlogPost).author || (blog as Post).author || "Admin";
+
   return (
     <div className="flex flex-col sm:flex-row gap-4 rounded-lg overflow-hidden bg-white shadow-[0_3px_10px_rgba(0,123,255,0.15)] hover:shadow-[0_3px_20px_rgba(0,123,255,0.2)] transition-shadow duration-300">
       {/* Image */}
@@ -30,7 +35,7 @@ const BlogsCard: React.FC<BlogsCardProps> = ({ blog }) => {
         href={blogUrl}
         className="relative w-full sm:w-[15rem] h-[13rem] shrink-0"
       >
-        <Image src={blogImage} alt={blog.name} fill className="object-cover" />
+        <Image src={blogImage} alt={blogTitle} fill className="object-cover" />
       </Link>
 
       {/* Content */}
@@ -43,7 +48,7 @@ const BlogsCard: React.FC<BlogsCardProps> = ({ blog }) => {
         {/* Title */}
         <Link href={blogUrl} className="block">
           <h3 className="text-lg font-semibold leading-snug transition-colors duration-300 hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow">
-            {blog.name}
+            {blogTitle}
           </h3>
         </Link>
 
@@ -55,7 +60,7 @@ const BlogsCard: React.FC<BlogsCardProps> = ({ blog }) => {
           </div>
           <div className="flex items-center gap-1">
             <FaUser size={14} />
-            Admin Admin
+            {blogAuthor}
           </div>
         </div>
 

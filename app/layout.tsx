@@ -9,6 +9,7 @@ import {
   getRange,
 } from "@/apis/get-apis";
 import { SidebarProvider } from "@/hooks/useSidebarMob";
+import { ModalProvider } from "@/hooks/useModalContext";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -35,24 +36,28 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
+        <div id="backdrop-root"></div>
+        <div id="overlay-root"></div>
         <SidebarProvider>
-          <div className="flex min-h-screen flex-col">
-            <Navbar
-              navData={navItems.menus[0]}
-              logo={logoAndDesc.logo}
-              categories={categoryItems}
-              range={productsRange}
-            />
-            <div className="flex-1">{children}</div>
-            <Footer
-              socialLinks={navItems.menus[1]}
-              quickLinks={navItems.menus[2]}
-              resourceLinks={navItems.menus[3]}
-              contactInfo={navItems.contact}
-              logo={logoAndDesc.logo}
-              description={logoAndDesc.logo_description}
-            />
-          </div>
+          <ModalProvider>
+            <div className="flex min-h-screen flex-col">
+              <Navbar
+                navData={navItems.menus[0]}
+                logo={logoAndDesc.logo}
+                categories={categoryItems}
+                range={productsRange}
+              />
+              <div className="flex-1">{children}</div>
+              <Footer
+                socialLinks={navItems.menus[1]}
+                quickLinks={navItems.menus[2]}
+                resourceLinks={navItems.menus[3]}
+                contactInfo={navItems.contact}
+                logo={logoAndDesc.logo}
+                description={logoAndDesc.logo_description}
+              />
+            </div>
+          </ModalProvider>
         </SidebarProvider>
       </body>
     </html>

@@ -1,4 +1,5 @@
 import Button from "@/components/ui/Button";
+import BannerEnquiry from "./BannerEnquiry";
 
 type BannerContentProps = {
   bannerTitle: string;
@@ -27,11 +28,7 @@ const BannerContent: React.FC<BannerContentProps> = ({
           text="View Products"
           className="bg-white text-primaryBlue px-4 md:px-6 py-2 rounded-full text-fontDesk md:text-fontDeskLarge"
         />
-        <Button
-          type="button"
-          text="Send Enquiry"
-          className="bg-primaryBlue text-white px-4 md:px-6 py-2 rounded-full text-fontDesk md:text-fontDeskLarge"
-        />
+        <BannerEnquiry />
       </div>
     </div>
   );
