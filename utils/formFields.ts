@@ -45,3 +45,35 @@ export const careerFormFieldsData = [
     placeholder: "Your Email Address",
   },
 ];
+
+// ----------------- PRODUCT ENQUIRY FORM FIELDS DATA ---------------------------
+export const enquiryFormFieldsData = [
+  {
+    type: "text",
+    name: "name",
+    id: "name",
+    placeholder: "Enter Your Name",
+    label: "Name"
+  },
+  {
+    type: "text",
+    name: "email",
+    id: "email",
+    placeholder: "Enter Your Email",
+    label: "Email"
+  },
+  {
+    type: "text",
+    name: "phone",
+    id: "phone",
+    placeholder: "Enter Contact No.",
+    label: "Contact No."
+  },
+  {
+    type: "text",
+    name: "product",
+    id: "product",
+    placeholder: "Product Name",
+    label: "Product Name"
+  },
+];

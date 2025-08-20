@@ -11,9 +11,7 @@ type BreadcrumbProps = {
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, subtitle }) => {
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter((seg) => seg !== "");
-
-  const fallbackSubtitle = "Explore our collection";
-  const displaySubtitle = subtitle?.trim() || fallbackSubtitle;
+  const displaySubtitle = subtitle?.trim();
 
   // Filter out unwanted segments like "category" or "type"
   const breadcrumbSegments = pathSegments.filter(
@@ -38,12 +36,14 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, subtitle }) => {
           {title}
         </h1>
 
-        <p className="text-white text-fontDesk md:text-fontDeskLarge">
-          {displaySubtitle}
-        </p>
+        {displaySubtitle && (
+          <p className="text-white text-fontDesk md:text-fontDeskLarge">
+            {displaySubtitle}
+          </p>
+        )}
       </div>
 
-      <ol className="text-white flex space-x-2 text-fontDesk md:text-fontDeskLarge text-center">
+      <ol className="text-white flex flex-wrap justify-center space-x-2 text-fontDesk md:text-fontDeskLarge text-center">
         <li>
           <Link href="/" className="hover:underline">
             Home

@@ -80,4 +80,27 @@ export type BlogCategoryResponse = {
   success: boolean;
   category: Category;
   posts: BlogPost[];
+  meta: Meta;
+};
+
+//-------------------BLOG DETAIL TYPE-------------------
+export type Blog = {
+  id: number;
+  name: string;
+  slug: string;
+  author_name: string;
+  description: string;
+  content: string;
+  image: string | null;
+  banner_image: string | null;
+  categories: Category[];
+  tags: Tag[];
+  created_at: string;
+  updated_at: string;
+};
+
+export type BlogResponse = {
+  data: Blog;
+  error: boolean;
+  message: string | null;
 };

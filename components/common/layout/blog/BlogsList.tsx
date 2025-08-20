@@ -55,7 +55,10 @@ const BlogsList: React.FC<BlogsListProps> = ({
     setLoading(true);
     try {
       const nextPage = currentPage + 1;
-      const endpoint = pageType === "allBlogs" && `/api/all-blogs`;
+      const endpoint =
+        pageType === "allBlogs"
+          ? `/api/all-blogs`
+          : `/api/category-blogs/${slug}`;
 
       const res = await fetch(`${endpoint}?page=${nextPage}`);
       const data = await res.json();

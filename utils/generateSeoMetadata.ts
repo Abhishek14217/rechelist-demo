@@ -15,8 +15,10 @@ export const generateSeoMetadata = (
 ): Metadata => {
   const baseImageUrl = process.env.NEXT_PUBLIC_SERVER_IMAGE_URL || "";
 
-  const title = seo.seo_title;
-  const description = seo.seo_description;
+  const title = seo.seo_title || "Rechelist Pharma";
+  const description =
+    seo.seo_description ||
+    "Join hands with Rechelist Pharma – a trusted name in PCD Pharma Franchise. We deliver high-quality, affordable medicines backed by certifications and timely support to help your business grow.";
 
   const image = seo.seo_image ? `${baseImageUrl}/${seo.seo_image}` : undefined;
 

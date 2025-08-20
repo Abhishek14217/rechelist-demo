@@ -29,9 +29,12 @@ const BlogsListSection = (props: UnionBlogsProps) => {
         </h3>
         <BlogsList
           categoryName={data.category.name}
-          blogsList={data.posts}
-          pageType={pageType}
           slug={slug}
+          blogsList={data.posts}
+          per_page={data.meta.per_page}
+          last_page={data.meta.last_page}
+          total={data.meta.total}
+          pageType={pageType}
         />
       </div>
     );

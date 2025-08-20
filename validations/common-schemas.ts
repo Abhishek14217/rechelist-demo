@@ -14,7 +14,7 @@ export type TNewsSubscriptionSchema = z.infer<typeof newsSubscriptionSchema>;
 
 //-----------------CONTACT US SCHEMA-------------------
 export const contactFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
+  name: z.string().min(1, "Name is required"),
   email: z
     .string()
     .min(1, {
@@ -23,8 +23,16 @@ export const contactFormSchema = z.object({
     .email({ message: "Invalid Email" }),
   phone: z
     .string()
-    .min(10, "Phone number must be at least 10 digits")
-    .regex(/^\d+$/, "Phone must contain only numbers"),
+    .min(1, {
+      message: "Contact Number is required",
+    })
+    .min(10, {
+      message: "Please Enter a valid 10 digit mobile number",
+    })
+    .max(10, {
+      message: "Please Enter a valid 10 digit mobile number",
+    })
+    .regex(/^\d+$/, { message: "Invalid Contact Number" }),
   city: z.string(),
   message: z.string(),
 });
@@ -40,3 +48,30 @@ export const careerFormSchema = z.object({
 });
 
 export type TCareerFormSchema = z.infer<typeof careerFormSchema>;
+
+//-----------------PRODUCT ENQUIRY SCHEMA-------------------
+export const enquiryFormSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z
+    .string()
+    .min(1, {
+      message: "Email is required",
+    })
+    .email({ message: "Invalid Email" }),
+  phone: z
+    .string()
+    .min(1, {
+      message: "Contact Number is required",
+    })
+    .min(10, {
+      message: "Please Enter a valid 10 digit mobile number",
+    })
+    .max(10, {
+      message: "Please Enter a valid 10 digit mobile number",
+    })
+    .regex(/^\d+$/, { message: "Invalid Contact Number" }),
+  product: z.string().min(1, "Product Name is required"),
+  message: z.string(),
+});
+
+export type TEnquiryFormSchema = z.infer<typeof enquiryFormSchema>;

@@ -113,6 +113,12 @@ export const getCategoryWiseBlogs = (slug: string) =>
     next: { revalidate: 3600 },
   });
 
+export const getBlogDetail = (slug: string) =>
+  fetchFromAPI(`/posts/${slug}`, {
+    throw404: true,
+    next: { revalidate: 3600 },
+  });
+
 // ---------------- PAGES ----------------
 export const getAboutUsData = () =>
   fetchFromAPI("/pages/about-us", {

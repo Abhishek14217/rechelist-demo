@@ -1,27 +1,38 @@
 import Image, { StaticImageData } from "next/image";
 
 import { UnionBlogsProps } from "@/types/union";
+import Wrapper from "@/components/ui/Wrapper";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 
 import blogBanner from "@/images/blog-banner.jpg";
 
 export default async function BlogsBannerSection(props: UnionBlogsProps) {
   let title: string = "Blogs";
-  let subtitle: string = "Insights & Updates in Healthcare";
-  let bgImage: string | StaticImageData = blogBanner;
+  let subtitle: string | null = "Insights & Updates in Healthcare";
+  let bgImage: string | StaticImageData | null = blogBanner;
 
   if (props.pageType === "allBlogs") {
     title = "Blogs";
     subtitle = "Insights & Updates in Healthcare";
     bgImage = blogBanner;
   } else if (props.pageType === "blogDetail") {
-    title = "Blog Detail";
-    subtitle = "Insights & Updates in Healthcare";
-    bgImage = blogBanner;
+    title = props.data.data.name;
+    subtitle = null;
+    bgImage = null;
   } else {
     title = props.data.category.name;
     subtitle = "Insights & Updates in Healthcare";
     bgImage = blogBanner;
+  }
+
+  if (!bgImage) {
+    return (
+      <section className="bg-gradient-to-r from-primaryOrange to-secondaryYellow py-10 lg:py-16 text-center">
+        <Wrapper>
+        <Breadcrumb title={title} subtitle={subtitle} />
+        </Wrapper>
+      </section>
+    );
   }
 
   return (

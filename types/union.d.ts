@@ -29,7 +29,12 @@ export type UnionProductsProps =
   | AllProductsBannerProps;
 
 //----------------------BLOGS----------------------------
-import { BlogCategoryResponse, Post, PostsApiResponse } from "./blog";
+import {
+  BlogCategoryResponse,
+  BlogResponse,
+  Post,
+  PostsApiResponse,
+} from "./blog";
 
 export type AllBlogsPageProps = {
   pageType: "allBlogs";
@@ -47,6 +52,7 @@ export type CategoryBlogsPageProps = {
 
 export type BlogDetailPageProps = {
   pageType: "blogDetail";
+  data: BlogResponse;
   slug?: string;
   recentData?: Post[];
 };

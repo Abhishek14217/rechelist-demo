@@ -1,8 +1,19 @@
 import { getBlogs, getCategoryWiseBlogs } from "@/apis/get-apis";
 import BlogListingLayout from "@/components/common/layout/blog/BlogListingLayout";
 import { CategoryBlogsPageProps } from "@/types/union";
+import { generateSeoMetadata } from "@/utils/generateSeoMetadata";
+import { getAbsoluteUrl } from "@/utils/helper";
 
 type Params = Promise<{ slug: string }>;
+
+export async function generateMetadata({ params }: { params: Params }) {
+  const { slug } = await params;
+
+  const pageData = await getCategoryWiseBlogs(slug);
+  const pageUrl = getAbsoluteUrl(`/blog/category/${slug}`);
+
+  return generateSeoMetadata(pageData?.seo || {}, pageUrl, "article");
+}
 
 const BlogCatPage = async ({ params }: { params: Params }) => {
   const { slug } = await params;

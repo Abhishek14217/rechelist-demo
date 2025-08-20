@@ -112,9 +112,13 @@ const ContactForm = () => {
         )}
       </div>
 
-      <div className="flex flex-col gap-gapSmall mt-gap">
+      <div className="flex flex-col gap-3 mt-gap text-center">
         {serverError && (
           <p className="text-dangerRedText text-sm">{serverError}</p>
+        )}
+
+        {successMessage && (
+          <p className="text-successGreen text-sm">{successMessage}</p>
         )}
 
         {/* Submit Button */}
@@ -129,9 +133,6 @@ const ContactForm = () => {
         </button>
 
         {/* Success Message */}
-        {successMessage && (
-          <p className="text-successGreen text-sm">{successMessage}</p>
-        )}
       </div>
     </form>
   );
