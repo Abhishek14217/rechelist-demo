@@ -103,7 +103,7 @@ const ProductEnquiryForm: React.FC<ProductEnquiryFormProps> = ({
                 focus:outline-none focus:border-primaryOrange 
                 ${
                   field.name === "product"
-                    ? "bg-gray-100 cursor-not-allowed"
+                    ? "bg-gray-100 cursor-not-allowed text-primaryBlue font-semibold lg:font-normal"
                     : ""
                 }
               `}

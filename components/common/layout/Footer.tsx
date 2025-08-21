@@ -112,7 +112,7 @@ const Footer: React.FC<FooterProps> = ({
                       target={link.target}
                       href={link.url}
                       key={linkIndex}
-                      className="text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
+                      className="w-fit text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
                     >
                       {link.title}
                     </Link>
@@ -130,7 +130,7 @@ const Footer: React.FC<FooterProps> = ({
                       target={link.target}
                       href={link.url}
                       key={linkIndex}
-                      className="text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
+                      className="w-fit text-fontDesk hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primaryOrange hover:to-secondaryYellow transition-colors duration-300"
                     >
                       {link.title}
                     </Link>

@@ -11,7 +11,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   try {
     const data = await fetchFromAPI(`/products/${slug}`, {
       params: { page },
-      next: { revalidate: 600 },
+      // next: { revalidate: 600 },
     });
     return NextResponse.json(data);
   } catch (error: any) {
