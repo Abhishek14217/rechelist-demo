@@ -90,7 +90,7 @@ export default function PrivacyPage() {
   return (
     <div className="mt-0 lg:mt-gapLargest flex flex-col gap-[2rem] lg:gap-[4rem]">
       {/* Banner */}
-      <section className="bg-gradient-to-r from-primaryOrange to-secondaryYellow py-7 lg:py-12 text-center">
+      <section className="bg-gradient-to-r from-primaryOrange to-secondaryYellow py-7 md:py-9 lg:py-12 text-center">
         <Wrapper>
           <Breadcrumb
             title="Privacy Policy"

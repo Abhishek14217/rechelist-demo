@@ -46,13 +46,13 @@ const ProductRangeList = async () => {
               mainText="Type of Products"
               subText="Product Range"
             />
-            <div className="flex overflow-x-scroll no-scrollbar md:grid md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr] gap-gap">
+            <div className="flex overflow-x-scroll no-scrollbar md:grid md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] gap-gap">
               {productsRange.data.map((item, index) => (
                 <div key={index} className="flex flex-col gap-gap">
                   <div className="relative group lg:overflow-hidden rounded-xl">
                     <Link
                       href={`/type/${item.slug}`}
-                      className="h-[12rem] md:h-[18rem] w-[12rem] lg:w-full block"
+                      className="h-[12rem] md:h-[17rem] lg:h-[15rem] w-[12rem] lg:w-full block"
                     >
                       <Image
                         src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${item.image}`}

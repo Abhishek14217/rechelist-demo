@@ -27,7 +27,7 @@ export default async function BlogsBannerSection(props: UnionBlogsProps) {
 
   if (!bgImage) {
     return (
-      <section className="bg-gradient-to-r from-primaryOrange to-secondaryYellow py-10 lg:py-16 text-center">
+      <section className="bg-gradient-to-r from-primaryOrange to-secondaryYellow py-10 md:py-14 lg:py-16 text-center">
         <Wrapper>
         <Breadcrumb title={title} subtitle={subtitle} />
         </Wrapper>

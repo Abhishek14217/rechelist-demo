@@ -17,7 +17,7 @@ export default function CareerPage() {
   return (
     <div className="mt-0 lg:mt-gapLargest flex flex-col gap-[3rem] lg:gap-[5rem]">
       {/* Top Background + Breadcrumb */}
-      <section className="bg-gradient-to-r from-primaryOrange to-secondaryYellow py-7 lg:py-12 text-center">
+      <section className="bg-gradient-to-r from-primaryOrange to-secondaryYellow py-7 md:py-9 lg:py-12 text-center">
         <Breadcrumb title="Career" subtitle="Careers at Rechelist Pharma" />
       </section>
 

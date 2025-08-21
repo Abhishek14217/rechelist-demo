@@ -28,7 +28,7 @@ const HomeProductsList: React.FC<HomeProductsListProps> = ({ products }) => {
         <div className="flex flex-col gap-gapUltra">
           <SectionHeader
             mainText="Portfolio"
-            subText="Our Products"
+            subText="Our Upcoming Products"
             subTextClass="text-white text-fontDeskLargest lg:text-fontDeskUltra"
           />
           {/* Products Grid */}

@@ -84,7 +84,7 @@ export default function ProductCard({
       </div>
       {showModal && (
         <Modal
-          className="bg-white rounded-2xl shadow-lg relative w-[85%] lg:w-[38%] left-[7%] lg:left-[35%] top-[5vh] lg:top-[15vh] px-6 py-8 overflow-auto max-h-[90vh]"
+          className="bg-white rounded-2xl shadow-lg relative w-[85%] md:w-1/2 lg:w-[38%] left-[7%] md:left-[23%] lg:left-[35%] top-[5vh] md:top-[15vh] px-6 py-8 overflow-auto max-h-[90vh]"
           close={toggleModal}
         >
           {/* Close Icon */}

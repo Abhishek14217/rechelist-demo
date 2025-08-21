@@ -10,8 +10,8 @@ const MissionVision: React.FC<MissonVisionProps> = ({ data }) => {
   return (
     <div className="flex flex-col gap-[3rem] lg:gap-[4rem]">
       {/* Company Profile */}
-      <div className="flex flex-col lg:grid lg:grid-cols-[0.5fr_1fr] gap-gapLargest lg:gap-[3rem] items-start">
-        <div className="relative h-[20rem] md:h-full w-full">
+      <div className="flex flex-col md:grid md:grid-cols-[0.5fr_1fr] gap-gapLargest lg:gap-[3rem] items-center">
+        <div className="relative h-[20rem] md:h-full lg:h-[25rem] w-full">
           <Image
             src={aboutImg}
             alt="about"
@@ -24,14 +24,23 @@ const MissionVision: React.FC<MissonVisionProps> = ({ data }) => {
             Company Profile
           </h1>
           <p className="text-gray-700 leading-relaxed">
-            We offer a comprehensive range of over 2500+ high-quality
-            pharmaceutical products designed to meet all your healthcare needs.
-            From analgesics and antibiotics to anti-allergics and
-            anti-inflammatory solutions, our portfolio covers a vast spectrum.
-            Our diverse product line includes nutraceuticals, neuropsychiatric
-            medicines, hepatoprotectives, and more. Trust us for complete
-            healthcare solutions, including medicated soaps & shampoos, cough
-            syrups, injections, and specialized formulations.
+            Rechelist Pharma is a trusted name in the pharmaceutical industry,
+            committed to delivering excellence through innovation, quality, and
+            integrity. As a leading provider of PCD Pharma Franchise and Third
+            Party Manufacturing services, we empower healthcare businesses
+            across India with high-quality, affordable medicines.
+          </p>
+          <p className="text-gray-700 leading-relaxed">
+            Driven by a strong mission and vision, we focus on building
+            long-term partnerships with our clients by offering reliable
+            products, transparent processes, and timely support. With a wide
+            range of DCGI-approved formulations and WHO–GMP certified
+            manufacturing facilities, we ensure that every product meets the
+            highest standards of safety and efficacy.
+          </p>
+          <p className="text-gray-700 leading-relaxed">
+            At Rechelist Pharma, we don’t just make medicines — we build trust,
+            enable growth, and contribute to a healthier future.
           </p>
         </section>
       </div>

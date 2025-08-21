@@ -15,7 +15,7 @@ const SingleBlogDetail = (props: UnionBlogsProps) => {
   return (
     <div className="flex flex-col gap-6">
       {/* Blog Image */}
-      <div className="w-full h-[15rem] lg:h-[30rem] relative">
+      <div className="w-full h-[15rem] md:h-[25rem] lg:h-[30rem] relative">
         <Image
           src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${blog.image}`}
           alt={blog.name}

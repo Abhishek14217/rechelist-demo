@@ -9,12 +9,12 @@ type ServiceSectionProps = {
 const ServiceSection = ({ title, image, reverse }: ServiceSectionProps) => {
   return (
     <section
-      className={`flex flex-col lg:flex-row gap-gapLarge lg:gap-[3rem] items-center ${
+      className={`flex flex-col md:grid md:grid-cols-[0.8fr_1fr] lg:flex lg:flex-row gap-gapLarge lg:gap-[3rem] items-center ${
         reverse ? "flex-col-reverse lg:flex-row-reverse" : ""
       }`}
     >
       {/* Image */}
-      <div className="relative h-[18rem] lg:h-[25rem] w-full lg:w-[55%]">
+      <div className="relative h-[18rem] md:h-[25rem] w-full lg:w-[55%]">
         <Image
           src={image}
           alt={title}

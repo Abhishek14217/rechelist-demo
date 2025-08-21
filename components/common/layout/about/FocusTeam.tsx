@@ -33,8 +33,8 @@ const FocusTeam: React.FC<FocusTeamProps> = ({ focusItems, aboutTeamData }) => {
       </section>
 
       {/* Meet Our Expert Team */}
-      <div className="flex flex-col lg:grid lg:grid-cols-[0.5fr_1fr] gap-gapLarge lg:gap-[3rem] items-start">
-        <div className="relative h-[20rem] md:h-full w-full">
+      <div className="flex flex-col md:grid md:grid-cols-[0.5fr_1fr] gap-gapLarge lg:gap-[3rem] items-center">
+        <div className="relative h-[20rem] md:h-full lg:h-[25rem] w-full">
           <Image
             src={aboutImg}
             alt="about"

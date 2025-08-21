@@ -70,7 +70,7 @@ export default function CareerForm() {
   return (
     <section className="flex flex-col md:grid md:grid-cols-[0.5fr_1fr] items-center gap-8 p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-3xl shadow-lg">
       {/* Left Image */}
-      <div className="relative h-[20rem] w-full rounded-xl overflow-hidden shadow-md">
+      <div className="relative h-[20rem] lg:h-[25rem] w-full rounded-xl overflow-hidden shadow-md">
         <Image fill src={aboutImg} alt="HR Team" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
           <p className="text-white text-sm font-medium">

@@ -6,7 +6,7 @@ export default function ContactUsPage() {
   return (
     <div className="mt-0 lg:mt-gapLargest flex flex-col gap-[3rem] lg:gap-[5rem]">
       {/* Banner Section */}
-      <section className="bg-gradient-to-r from-primaryOrange to-secondaryYellow py-7 lg:py-12 text-center">
+      <section className="bg-gradient-to-r from-primaryOrange to-secondaryYellow py-7 md:py-9 lg:py-12 text-center">
         <Breadcrumb title="Contact Us" subtitle="We’d love to hear from you" />
       </section>
 
@@ -42,9 +42,9 @@ export default function ContactUsPage() {
           </section>
 
           {/* Map + Form */}
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             {/* Map */}
-            <div className="w-full h-[25rem] lg:h-full rounded-xl overflow-hidden shadow-md">
+            <div className="w-full h-[25rem] md:h-full rounded-xl overflow-hidden shadow-md">
               <iframe
                 src="https://maps.google.com/maps?q=Office%2020%2C%20Paras%20down%20square%20Mall%2C%20Zirakpur%2C%20Punjab%20140603&t=m&z=10&output=embed&iwloc=near"
                 width="100%"
