@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -39,9 +39,15 @@ const ProductEnquiryForm: React.FC<ProductEnquiryFormProps> = ({
   // Focus on first error input
   useFocusOnError(errors, setFocus);
 
+  useEffect(() => {
+    if (Object.keys(errors).length > 0 || serverError) {
+      setSuccessMessage("");
+    }
+  }, [errors, serverError]);
+
   const onSubmit = async (data: TEnquiryFormSchema) => {
     try {
-      const response = await fetch("/api/enquiry", {
+      const response = await fetch("/api/product-enquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +79,7 @@ const ProductEnquiryForm: React.FC<ProductEnquiryFormProps> = ({
       if (response.status === 201 || response.status === 200) {
         setSuccessMessage(responseData.message || "Enquiry sent successfully!");
         setServerError("");
-        reset({ product: productTitle }); // reset but keep product name
+        reset(undefined, { keepValues: false }); // reset but keep product name
       }
     } catch (error) {
       console.error("Request failed:", error);

@@ -11,6 +11,7 @@
     --primary-blue-css: #0098db;
     --primary-orange-css: #f16237;
     --secondary-yellow-css: #fdba2f;
+    --text-gray-css: #4b5563;
   }
 
   * {
@@ -193,6 +194,43 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+}
+
+/* -----------------------CONTACT US----------------------------*/
+.contact-design {
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(
+      to right,
+      var(--primary-orange-css),
+      var(--secondary-yellow-css)
+    );
+    margin-bottom: 0.5rem;
+  }
+  p {
+    color: var(--text-gray-css);
+  }
+}
+
+/* -----------------------ABOUT US PAGE----------------------------*/
+.focus-team-design {
+  h3 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    color: var(--primary-blue-css);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.625;
+    color: var(--text-gray-css);
   }
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -28,6 +28,12 @@ const ContactForm = () => {
   });
 
   useFocusOnError(errors, setFocus);
+
+  useEffect(() => {
+    if (Object.keys(errors).length > 0 || serverError) {
+      setSuccessMessage("");
+    }
+  }, [errors, serverError]);
 
   const onSubmit = async (data: TContactFormSchema) => {
     try {

@@ -13,9 +13,11 @@ import {
 import { careerFormFieldsData } from "@/utils/formFields";
 import { getErrorMessage, useFocusOnError } from "@/utils/useFormHelpers";
 
-import aboutImg from "@/images/about-company-one.png";
+type CareerFormProps = {
+  image: string;
+};
 
-export default function CareerForm() {
+const CareerForm: React.FC<CareerFormProps> = ({ image }) => {
   const [successMessage, setSuccessMessage] = useState<string>("");
 
   const {
@@ -37,7 +39,7 @@ export default function CareerForm() {
 
   const onSubmit = async (data: TCareerFormSchema) => {
     try {
-      const res = await fetch("/api/career-form", {
+      const res = await fetch("/api/career", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -70,13 +72,13 @@ export default function CareerForm() {
   return (
     <section className="flex flex-col md:grid md:grid-cols-[0.5fr_1fr] items-center gap-8 p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-3xl shadow-lg">
       {/* Left Image */}
-      <div className="relative h-[20rem] lg:h-[25rem] w-full rounded-xl overflow-hidden shadow-md">
-        <Image fill src={aboutImg} alt="HR Team" className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
-          <p className="text-white text-sm font-medium">
-            We’re here to answer your career queries
-          </p>
-        </div>
+      <div className="relative h-[17rem] lg:h-[25rem] w-full rounded-xl overflow-hidden">
+        <Image
+          fill
+          src={`${process.env.NEXT_PUBLIC_SERVER_IMAGE_URL}/${image}`}
+          alt="HR Team"
+          // className="object-cover"
+        />
       </div>
 
       {/* Right Form */}
@@ -94,7 +96,10 @@ export default function CareerForm() {
           className="relative flex flex-col sm:flex-row gap-4 "
         >
           {careerFormFieldsData.map((item, index) => (
-            <div key={index} className="flex flex-col gap-gapSmall w-full whitespace-nowrap">
+            <div
+              key={index}
+              className="flex flex-col gap-gapSmall w-full whitespace-nowrap"
+            >
               <CustomInput
                 type={item.type}
                 placeholder={item.placeholder}
@@ -123,4 +128,6 @@ export default function CareerForm() {
       </div>
     </section>
   );
-}
+};
+
+export default CareerForm;

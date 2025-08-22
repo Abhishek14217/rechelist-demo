@@ -1,11 +1,28 @@
-import ServiceSection from "@/components/common/layout/services/ServiceSection";
+import { Suspense } from "react";
+
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Wrapper from "@/components/ui/Wrapper";
+import PCDSection from "@/components/common/layout/services/PCDSection";
+import ThirdPartySection from "@/components/common/layout/services/ThirdPartySection";
+import { getPcdOpportunity } from "@/apis/get-apis";
+import { getAbsoluteUrl } from "@/utils/helper";
+import { generateSeoMetadata } from "@/utils/generateSeoMetadata";
 
-import pcdImg from "@/images/pcd-opportunity-new.png";
-import thirdPartyImg from "@/images/pcd-opportunity-new.png";
+export const generateMetadata = async () => {
+  const defaultSeo = {
+    seo_title: "Services",
+    seo_description:
+      "Get in touch with Rechelist Pharma for PCD Pharma Franchise opportunities, partnerships, and product inquiries. Reach us at our offices or send us a message online.",
+  };
 
-const ServicesPage = () => {
+  const pageUrl = getAbsoluteUrl("/services");
+
+  return generateSeoMetadata(defaultSeo, pageUrl, "article");
+};
+
+export default async function ServicesPage() {
+  const { data: pcdData } = await getPcdOpportunity();
+
   return (
     <div className="mt-0 lg:mt-gapLargest flex flex-col gap-[2rem] lg:gap-[4rem]">
       {/* Banner */}
@@ -17,18 +34,21 @@ const ServicesPage = () => {
           />
         </Wrapper>
       </section>
+
       <Wrapper>
         <div className="flex flex-col gap-gapUltra lg:gap-[4rem]">
-          <ServiceSection title="PCD Opportunity" image={pcdImg} />
-          <ServiceSection
-            title="Third Party Manufacturing"
-            image={thirdPartyImg}
-            reverse
+          <PCDSection
+            title={pcdData?.title || "PCD Opportunity"}
+            image={pcdData?.innerimage}
+            content={pcdData?.content}
+            offers={pcdData?.offers}
           />
+
+          <Suspense fallback={<p>Loading...</p>}>
+            <ThirdPartySection />
+          </Suspense>
         </div>
       </Wrapper>
     </div>
   );
-};
-
-export default ServicesPage;
+}

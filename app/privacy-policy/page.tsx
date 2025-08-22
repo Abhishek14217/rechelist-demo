@@ -1,6 +1,8 @@
 import PolicySection from "@/components/common/layout/policy/PolicySection";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Wrapper from "@/components/ui/Wrapper";
+import { generateSeoMetadata } from "@/utils/generateSeoMetadata";
+import { getAbsoluteUrl } from "@/utils/helper";
 
 interface PolicyData {
   title: string;
@@ -85,6 +87,18 @@ For questions or concerns regarding this Privacy Policy, contact us at:
     `,
   },
 ];
+
+export const generateMetadata = async () => {
+  const defaultSeo = {
+    seo_title: "Privacy Policy",
+    seo_description:
+      "Get in touch with Rechelist Pharma for PCD Pharma Franchise opportunities, partnerships, and product inquiries. Reach us at our offices or send us a message online.",
+  };
+
+  const pageUrl = getAbsoluteUrl("/privacy-policy");
+
+  return generateSeoMetadata(defaultSeo, pageUrl, "article");
+};
 
 export default function PrivacyPage() {
   return (

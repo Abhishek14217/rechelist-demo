@@ -1,17 +1,22 @@
 type Props = {
-  data: {
-    title: string;
-    description: string;
-  };
+  title: string;
+  content: string;
 };
 
-export default function CareerIntro({ data }: Props) {
+const CareerIntro: React.FC<Props> = ({ title, content }) => {
   return (
     <section className="text-center max-w-3xl mx-auto">
       <h1 className="text-2xl lg:text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primaryOrange to-secondaryYellow">
-        {data.title}
+        {title}
       </h1>
-      <p className="mt-4 text-gray-600">{data.description}</p>
+      <div
+        className="mt-2 text-gray-600"
+        dangerouslySetInnerHTML={{
+          __html: content,
+        }}
+      />
     </section>
   );
-}
+};
+
+export default CareerIntro;

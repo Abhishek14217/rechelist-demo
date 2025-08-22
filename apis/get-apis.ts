@@ -80,11 +80,6 @@ export const getSpeciality = () =>
     next: { revalidate: 3600 },
   });
 
-export const getPcdOpportunity = () =>
-  fetchFromAPI("/site-options/pcd-franchise", {
-    next: { revalidate: 3600 },
-  });
-
 export const getTestimonials = () =>
   fetchFromAPI("/testimonials", {
     next: { revalidate: 3600 },
@@ -122,6 +117,36 @@ export const getBlogDetail = (slug: string) =>
 // ---------------- PAGES ----------------
 export const getAboutUsData = () =>
   fetchFromAPI("/pages/about-us", {
+    next: { revalidate: 3600 },
+  });
+
+export const getAboutUsInnerData = () =>
+  fetchFromAPI("/aboutsection", {
+    next: { revalidate: 3600 },
+  });
+
+export const getContactData = () =>
+  fetchFromAPI("/contactad", {
+    next: { revalidate: 3600 },
+  });
+
+export const getServicesData = () =>
+  fetchFromAPI("/pages/services", {
+    next: { revalidate: 3600 },
+  });
+
+export const getPcdOpportunity = () =>
+  fetchFromAPI("/site-options/pcd-franchise", {
+    next: { revalidate: 3600 },
+  });
+
+export const getCareerData = () =>
+  fetchFromAPI("/pages/career", {
+    next: { revalidate: 3600 },
+  });
+
+  export const getTermsConditionsData = () =>
+  fetchFromAPI("/pages/terms-and-conditions", {
     next: { revalidate: 3600 },
   });
 
