@@ -11,7 +11,7 @@ import phoneIcon from "@/icons/phone-icon.svg";
 import NewsletterForm from "../forms/NewsletterForm";
 import {
   IconBrandFacebook,
-  IconBrandTwitter,
+  IconBrandX,
   IconBrandPinterest,
 } from "@tabler/icons-react";
 
@@ -49,7 +49,7 @@ const Footer: React.FC<FooterProps> = ({
 
   const iconMap: Record<string, JSX.Element> = {
     "ti ti-brand-facebook": <IconBrandFacebook size={24} stroke={1.5} />,
-    "ti ti-brand-x": <IconBrandTwitter size={24} stroke={1.5} />,
+    "ti ti-brand-x": <IconBrandX size={24} stroke={1.5} />,
     "ti ti-brand-instagram": <IconBrandPinterest size={24} stroke={1.5} />,
   };
 
