@@ -13,6 +13,7 @@ import {
   IconBrandFacebook,
   IconBrandX,
   IconBrandPinterest,
+  IconBrandInstagram,
 } from "@tabler/icons-react";
 
 type FooterProps = {
@@ -50,7 +51,8 @@ const Footer: React.FC<FooterProps> = ({
   const iconMap: Record<string, JSX.Element> = {
     "ti ti-brand-facebook": <IconBrandFacebook size={24} stroke={1.5} />,
     "ti ti-brand-x": <IconBrandX size={24} stroke={1.5} />,
-    "ti ti-brand-instagram": <IconBrandPinterest size={24} stroke={1.5} />,
+    "ti ti-brand-pinterest": <IconBrandPinterest size={24} stroke={1.5} />,
+    "ti ti-brand-instagram": <IconBrandInstagram size={24} stroke={1.5} />,
   };
 
   return (
