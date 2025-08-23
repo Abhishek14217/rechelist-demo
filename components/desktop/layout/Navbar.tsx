@@ -46,7 +46,7 @@ const Navbar: React.FC<NavBarProps> = ({
       {showModal && (
         <Modal
           close={closeModal}
-          className="relative w-[85%] md:w-[50%] left-[6%] md:left-[25%] top-[2vh] md:top-[10vh] lg:top-[5vh]"
+          className="relative w-[85%] md:w-[50%] left-[6%] md:left-[25%] top-[2vh] md:top-[10vh] lg:top-[5vh] sm:overflow-auto sm:max-h-[90vh]"
         >
           <div className="flex justify-end">
             <button

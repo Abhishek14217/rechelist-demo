@@ -45,6 +45,7 @@ const Footer: React.FC<FooterProps> = ({
     {
       img: phoneIcon,
       content: contactInfo.phone,
+      tel: true,
     },
   ];
 
@@ -93,12 +94,21 @@ const Footer: React.FC<FooterProps> = ({
                         unoptimized
                         className="size-[1.25rem]"
                       />
-                      <span
-                        className="text-fontDesk"
-                        dangerouslySetInnerHTML={{
-                          __html: item.content,
-                        }}
-                      />
+                      {item.tel ? (
+                        <a
+                          href={`tel:${item.content}`}
+                          className="text-fontDesk hover:text-primaryOrange transition-colors"
+                        >
+                          {item.content}
+                        </a>
+                      ) : (
+                        <span
+                          className="text-fontDesk"
+                          dangerouslySetInnerHTML={{
+                            __html: item.content,
+                          }}
+                        />
+                      )}
                     </div>
                   ))}
                 </div>
