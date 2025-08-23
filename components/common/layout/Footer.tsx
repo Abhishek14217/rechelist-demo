@@ -12,7 +12,7 @@ import NewsletterForm from "../forms/NewsletterForm";
 import {
   IconBrandFacebook,
   IconBrandTwitter,
-  IconBrandInstagram,
+  IconBrandPinterest,
 } from "@tabler/icons-react";
 
 type FooterProps = {
@@ -50,7 +50,7 @@ const Footer: React.FC<FooterProps> = ({
   const iconMap: Record<string, JSX.Element> = {
     "ti ti-brand-facebook": <IconBrandFacebook size={24} stroke={1.5} />,
     "ti ti-brand-x": <IconBrandTwitter size={24} stroke={1.5} />,
-    "ti ti-brand-instagram": <IconBrandInstagram size={24} stroke={1.5} />,
+    "ti ti-brand-instagram": <IconBrandPinterest size={24} stroke={1.5} />,
   };
 
   return (
